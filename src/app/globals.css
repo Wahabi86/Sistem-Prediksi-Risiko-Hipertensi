@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+/* Custom styles untuk aplikasi hipertensi */
+body {
+  font-family: var(--font-dm-sans), sans-serif;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
