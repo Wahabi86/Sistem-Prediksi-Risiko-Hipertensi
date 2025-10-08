@@ -18,6 +18,8 @@ export default function Navbar() {
     setUserMenuOpen(false);
   }, [pathname]);
 
+  const isActive = (path) => pathname === path;
+
   return (
     <>
       <nav className="bg-gradient-to-r from-cyan-800 to-[#0872C2] shadow-xl sticky top-0 z-50 text-white">
@@ -32,20 +34,20 @@ export default function Navbar() {
             {/* Navigation */}
             <div className="flex justify-center items-center space-x-8 font-bold text-lg ">
               <Link href="/">
-                <span className="hover:text-blue-200 transition-colors">Home</span>
+                <span className={`hover:text-blue-200 transition-colors ${isActive("/") ? "text-blue-200 border-b-2 border-blue-200 pb-1" : "hover:text-blue-200"}`}>Home</span>
               </Link>
               <Link href="/halaman-edukasi">
-                <span className="hover:text-blue-200 transition-colors">Edukasi</span>
+                <span className={`hover:text-blue-200 transition-colors ${isActive("/halaman-edukasi") ? "text-blue-200 border-b-2 border-blue-200 pb-1" : "hover:text-blue-200"}`}>Edukasi</span>
               </Link>
               <Link href="/halaman-riwayat">
-                <span className="hover:text-blue-200 transition-colors">Riwayat</span>
+                <span className={`hover:text-blue-200 transition-colors ${isActive("/halaman-riwayat") ? "text-blue-200 border-b-2 border-blue-200 pb-1" : "hover:text-blue-200"}`}>Riwayat</span>
               </Link>
             </div>
 
             {/* User Menu */}
             <div className="flex justify-end">
               <div className="relative">
-                <button onClick={() => setUserMenuOpen(!userMenuOpen)} className="text-black bg-gray-200 w-11 h-11 rounded-full flex justify-center items-center font-bold hover:bg-gray-300 transition-colors">
+                <button onClick={() => setUserMenuOpen(!userMenuOpen)} className="text-black bg-gray-200 w-11 h-11 rounded-full flex justify-center items-center font-bold hover:bg-gray-300 transition-colors text-xl">
                   G
                 </button>
 
