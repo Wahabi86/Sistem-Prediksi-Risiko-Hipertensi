@@ -2,10 +2,24 @@
 
 /* Custom styles untuk aplikasi hipertensi */
 body {
+  margin: 0;
+  padding: 0;
   font-family: var(--font-dm-sans), sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 15px 0;
+  width: 100%;
+  margin-top: auto;
+  border-top: 1px solid #ddd;
 }
