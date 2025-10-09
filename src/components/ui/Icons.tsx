@@ -33,3 +33,27 @@ export function LogoutIcon({ className = "" }: IconSvgProps) {
     </svg>
   );
 }
+
+// Icon Downnload
+export function DownloadIcon({ className = "" }: IconSvgProps) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M7 10l5 5 5-5" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 15V3" />
+    </svg>
+  );
+}
+
+// Icon FileText
+export function FileTextIcon({ className = "" }: IconSvgProps) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <polyline strokeLinecap="round" strokeLinejoin="round" points="14 2 14 8 20 8" />
+      <line strokeLinecap="round" strokeLinejoin="round" x1="16" y1="13" x2="8" y2="13" />
+      <line strokeLinecap="round" strokeLinejoin="round" x1="16" y1="17" x2="8" y2="17" />
+      <line strokeLinecap="round" strokeLinejoin="round" x1="10" y1="9" x2="8" y2="9" />
+    </svg>
+  );
+}

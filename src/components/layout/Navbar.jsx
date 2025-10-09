@@ -34,7 +34,7 @@ export default function Navbar() {
             {/* Navigation */}
             <div className="flex justify-center items-center space-x-8 font-bold text-lg ">
               <Link href="/">
-                <span className={`hover:text-blue-200 transition-colors ${isActive("/") ? "text-blue-200 border-b-2 border-blue-200 pb-1" : "hover:text-blue-200"}`}>Home</span>
+                <span className={`hover:text-blue-200 transition-colors ${isActive("/") ? "text-blue-200 border-b-2 border-blue-200 pb-1" : "hover:text-blue-200"}`}>Beranda</span>
               </Link>
               <Link href="/halaman-edukasi">
                 <span className={`hover:text-blue-200 transition-colors ${isActive("/halaman-edukasi") ? "text-blue-200 border-b-2 border-blue-200 pb-1" : "hover:text-blue-200"}`}>Edukasi</span>
