@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { User, Brain, Stethoscope, Dumbbell } from "lucide-react";
+import PopupHasil from "@/components/ui/PopupHasil";
 
 export default function Formpage() {
   const router = useRouter();
@@ -42,10 +43,15 @@ export default function Formpage() {
     }
   };
 
+  // menampilkan popup hasil
+  const [showPopup, setShowPopup] = useState(false);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     console.log("Form Data:", formData);
     console.log("BMI:", bmi);
+
+    setShowPopup(true); // tampilkan popup
   };
 
   return (
@@ -300,7 +306,7 @@ export default function Formpage() {
             <button
               type="submit"
               onClick={handleSubmit}
-              className="bg-gradient-to-r from-cyan-800 to-[#0872C2] hover:from-cyan-700 hover:to-[#0A7FD4] text-white px-12 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-2xl transform transition-all duration-500 ease-in-out  active:scale-95"
+              className="bg-gradient-to-r from-cyan-800 to-[#0872C2] hover:from-cyan-700 hover:to-[#0A7FD4] text-white px-12 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-2xl transform transition-all duration-500 ease-in-out active:scale-95 cursor-pointer"
             >
               Mulai Prediksi Sekarang
             </button>
@@ -310,6 +316,9 @@ export default function Formpage() {
               </button>
             </div>
           </div>
+
+          {/* Untuk memunculkan popup */}
+          {showPopup && <PopupHasil onClose={() => setShowPopup(false)} />}
         </div>
       </div>
     </div>

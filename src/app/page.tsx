@@ -7,8 +7,8 @@ import ArrowIcon from "@/components/ui/Icons";
 const slides = [
   {
     title: "Selamat Datang!",
-    subTitle: "Yuk cek risiko hipertensi sejak dini",
-    text: "Jaga kesehatan anda untuk masa depan yang lebih sehat.",
+    subTitle: "Yuk cek risiko hipertensi sejak dini,",
+    text: "Jaga kesehatan anda untuk masa depan yang lebih baik.",
     buttonText: "Mulai Prediksi",
     buttonLink: "/form-prediksi",
     image: "/images/foto1.jpg",

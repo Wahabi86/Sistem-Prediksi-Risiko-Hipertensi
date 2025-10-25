@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "types", "src/components/layout/Navbar.jsx", "src/components/ui/Icons.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "types", "src/components/layout/Navbar.tsx", "src/components/ui/Icons.tsx"],
   "exclude": ["node_modules"]
 }

@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
-import { Heart } from "lucide-react";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { EditProfileIcon, LogoutIcon } from "@/components/ui/Icons";
+import Image from "next/image";
 
 export default function Navbar() {
   // mengatur user menu
@@ -18,7 +18,7 @@ export default function Navbar() {
     setUserMenuOpen(false);
   }, [pathname]);
 
-  const isActive = (path) => pathname === path;
+  const isActive = (path: string) => pathname === path;
 
   return (
     <>
@@ -26,9 +26,10 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-3 items-center h-16">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-2 text-white hover:text-slate-300 transition-colors">
-              <Heart className="h-8 w-8 text-red-500" />
-              <span className="font-bold text-lg md:text-xl tracking-wider">HIPERTENSI</span>
+            <Link href="/" className="flex items-center space-x-2">
+              <div className="bg-white rounded-full p-1">
+                <Image src="/images/logo.png" alt="Logo" width={40} height={40} className="rounded-full" />
+              </div>
             </Link>
 
             {/* Navigation */}
