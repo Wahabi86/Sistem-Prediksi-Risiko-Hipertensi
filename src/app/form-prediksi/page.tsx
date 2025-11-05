@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { User, Brain, Stethoscope, Dumbbell } from "lucide-react";
 import PopupHasil from "@/components/ui/PopupHasil";
 
-export default function Formpage() {
+export default function FormPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({
     gender: "",
@@ -56,7 +56,7 @@ export default function Formpage() {
 
   return (
     <div className="container mx-auto px-4 py-13">
-      <div className="bg-white rounded-2xl p-8 max-w-6xl mx-auto shadow-[0_4px_10px_rgba(0,0,0,0.15)]">
+      <div className="bg-white rounded-2xl p-8 max-w-7xl mx-auto shadow-[0_4px_10px_rgba(0,0,0,0.15)]">
         {/* Header */}
         <div className="container mx-auto px-4 mb-8">
           <div className="h-30 bg-gradient-to-r from-cyan-800 to-[#0872C2] rounded-2xl shadow-lg flex items-center justify-center">
@@ -102,7 +102,7 @@ export default function Formpage() {
                 <select
                   value={formData.usia}
                   onChange={(e) => handleInputChange("usia", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 bg-white text-gray-900"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900"
                 >
                   <option value="">Pilih Usia</option>
                   {["< 20 tahun", "20–29 tahun", "30–39 tahun", "40–49 tahun", "50–59 tahun", "≥ 60 tahun"].map((option) => (
@@ -130,7 +130,7 @@ export default function Formpage() {
                 <select
                   value={formData.tingkatStres}
                   onChange={(e) => handleInputChange("tingkatStres", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 bg-white text-gray-900"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900"
                 >
                   <option value="">Pilih Tingkat Stres</option>
                   {["Rendah (jarang merasa tertekan)", "Sedang (kadang merasa cemas/tertekan)", "Tinggi (sering cemas, tertekan, sulit mengendalikan stres)"].map((option) => (
@@ -147,7 +147,7 @@ export default function Formpage() {
                 <select
                   value={formData.waktuTidur}
                   onChange={(e) => handleInputChange("waktuTidur", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 bg-white text-gray-900"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900"
                 >
                   <option value="">Pilih Waktu Tidur</option>
                   {["< 5 jam", "5–6 jam", "7–8 jam (ideal)", "> 8 jam"].map((option) => (
@@ -164,7 +164,7 @@ export default function Formpage() {
                 <select
                   value={formData.olahraga}
                   onChange={(e) => handleInputChange("olahraga", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 bg-white text-gray-900"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900"
                 >
                   <option value="">Pilih Tingkat Aktivitas Olahraga</option>
                   {["Jarang / Tidak pernah", "1–2 kali per minggu", "3–4 kali per minggu", "≥ 5 kali per minggu"].map((option) => (
@@ -210,7 +210,7 @@ export default function Formpage() {
                 <select
                   value={formData.riwayatTekananDarah}
                   onChange={(e) => handleInputChange("riwayatTekananDarah", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 bg-white text-gray-900"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900"
                 >
                   <option value="">Pilih Riwayat Tekanan Darah</option>
                   {["Normal (<120 / <80 mmHg)", "Pra-hipertensi (120–139 / 80–89 mmHg)", "Hipertensi Stage 1 (140–159 / 90–99 mmHg)", "Hipertensi Stage 2 (≥160 / ≥100 mmHg)", "Tidak tahu / Belum pernah periksa"].map((option) => (
@@ -227,7 +227,7 @@ export default function Formpage() {
                 <select
                   value={formData.riwayatKeluarga}
                   onChange={(e) => handleInputChange("riwayatKeluarga", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 bg-white text-gray-900"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900"
                 >
                   <option value="">Pilih Riwayat Keluarga</option>
                   {["Tidak ada", "Ada hipertensi", "Ada penyakit jantung", "Ada stroke", "Lainnya"].map((option) => (
@@ -244,7 +244,7 @@ export default function Formpage() {
                 <select
                   value={formData.jenisObat}
                   onChange={(e) => handleInputChange("jenisObat", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 bg-white text-gray-900"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900"
                 >
                   <option value="">Pilih Jenis Obat</option>
                   {["Tidak ada", "Obat darah tinggi (antihipertensi)", "Obat jantung", "Obat diabetes", "Obat kolesterol", "Lainnya"].map((option) => (
@@ -274,7 +274,7 @@ export default function Formpage() {
                   placeholder="Contoh: 170"
                   value={formData.tinggiBadan}
                   onChange={(e) => handleInputChange("tinggiBadan", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
                 />
               </div>
 
@@ -286,7 +286,7 @@ export default function Formpage() {
                   placeholder="Contoh: 70"
                   value={formData.beratBadan}
                   onChange={(e) => handleInputChange("beratBadan", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
                 />
               </div>
             </div>

@@ -2,7 +2,8 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { EditProfileIcon, LogoutIcon } from "@/components/ui/Icons";
+import { LogoutIcon } from "@/components/ui/Icons";
+import { UserPen } from "lucide-react";
 import Image from "next/image";
 
 export default function Navbar() {
@@ -56,8 +57,8 @@ export default function Navbar() {
                   <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 text-gray-800">
                     {/* Edit Profile */}
                     <Link href="/halaman-edit" onClick={() => setUserMenuOpen(false)} className="flex items-center px-4 py-2 hover:bg-gray-100 transition-colors font-semibold">
-                      <EditProfileIcon className="w-5 h-5 mr-2" />
-                      Edit Profile
+                      <UserPen className="w-5 h-5 mr-2" />
+                      Edit Profil
                     </Link>
 
                     {/* Logout */}
