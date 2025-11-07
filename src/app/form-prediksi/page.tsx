@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { User, Brain, Stethoscope, Dumbbell } from "lucide-react";
+import { User, Brain, Stethoscope, Dumbbell, MoveLeft } from "lucide-react";
 import PopupHasil from "@/components/ui/PopupHasil";
 
 export default function FormPage() {
@@ -306,13 +306,14 @@ export default function FormPage() {
             <button
               type="submit"
               onClick={handleSubmit}
-              className="bg-gradient-to-r from-cyan-800 to-[#0872C2] hover:from-cyan-700 hover:to-[#0A7FD4] text-white px-12 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-2xl transform transition-all duration-500 ease-in-out active:scale-95 cursor-pointer"
+              className="bg-gradient-to-r from-cyan-800 to-[#0872C2] hover:from-cyan-700 hover:to-[#0A7FD4] text-white px-12 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transform transition-all duration-500 ease-in-out active:scale-95 cursor-pointer"
             >
               Mulai Prediksi Sekarang
             </button>
-            <div>
-              <button type="button" onClick={() => router.push("/")} className="text-cyan-600 hover:text-cyan-800 font-medium transition-colors duration-200 ">
-                ← Kembali ke Beranda
+            <div className="flex justify-center">
+              <button type="button" onClick={() => router.push("/")} className="flex items-center gap-2 text-cyan-600 hover:text-cyan-800 font-medium transition-colors duration-200">
+                <MoveLeft className="w-5 h-5" />
+                Kembali ke Beranda
               </button>
             </div>
           </div>

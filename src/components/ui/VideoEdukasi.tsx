@@ -19,7 +19,7 @@ export default function VideoEdukasi({ videoId }: VideoEdukasiProps) {
     height: "100%",
     width: "100%",
     playerVars: {
-      autoplay: 0,  // mengatur agar tidak autoplay
+      autoplay: 0, // mengatur agar tidak autoplay
       controls: 1, // tampilkan tombol kontrol
       rel: 0, // menghilangkan rekomendasi video lain
       modestbranding: 1, // hilangkan branding YouTube
@@ -57,7 +57,7 @@ export default function VideoEdukasi({ videoId }: VideoEdukasiProps) {
         {/* Judul & info video */}
         {videoData && (
           <div className="mb-4">
-            <h2 className="text-3xl font-bold mb-1">{videoData.title}</h2>
+            <h1 className="text-3xl font-bold mb-1">{videoData.title}</h1>
             <div className=" text-sm space-x-2">
               <span className="text-red-500 font-semibold">YouTube</span>
               <span className="text-gray-400">•</span>
