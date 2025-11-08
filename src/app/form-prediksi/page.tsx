@@ -1,11 +1,10 @@
 "use client";
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import { User, Brain, Stethoscope, Dumbbell, MoveLeft } from "lucide-react";
 import PopupHasil from "@/components/ui/PopupHasil";
+import Link from "next/link";
 
 export default function FormPage() {
-  const router = useRouter();
   const [formData, setFormData] = useState({
     gender: "",
     usia: "",
@@ -311,10 +310,10 @@ export default function FormPage() {
               Mulai Prediksi Sekarang
             </button>
             <div className="flex justify-center">
-              <button type="button" onClick={() => router.push("/")} className="flex items-center gap-2 text-cyan-600 hover:text-cyan-800 font-medium transition-colors duration-200">
+              <Link href="/" className="flex items-center gap-2 text-cyan-600 hover:text-cyan-800 font-medium transition-colors duration-200">
                 <MoveLeft className="w-5 h-5" />
                 Kembali ke Beranda
-              </button>
+              </Link>
             </div>
           </div>
 

@@ -62,8 +62,8 @@ export default function Navbar() {
                     </Link>
 
                     {/* Logout */}
-                    <button
-                      type="submit"
+                    <Link
+                      href="/auth/login"
                       onClick={() => {
                         setUserMenuOpen(false);
                         console.log("Logout Berhasil");
@@ -72,7 +72,7 @@ export default function Navbar() {
                     >
                       <LogoutIcon className="w-5 h-5 mr-2" />
                       Keluar
-                    </button>
+                    </Link>
                   </div>
                 )}
                 {/* Untuk menutup user menu ketika ada click diluarnya */}

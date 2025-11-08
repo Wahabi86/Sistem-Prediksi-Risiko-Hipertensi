@@ -1,11 +1,11 @@
-import React from "react";
+"use client";
+import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
-function RegisterPage() {
-  return (
-    <div>
-      <h1>This is Register Page</h1>
-    </div>
-  );
+export default function RegisterPage() {
+  return <div>
+    
+  </div>;
 }
-
-export default RegisterPage;

@@ -30,7 +30,7 @@ export default function EditPage() {
             <label className="block text-sm font-semibold mb-2">Jenis Kelamin</label>
             <input
               type="gender"
-              defaultValue="Laki - Laki"
+              placeholder="Laki - Laki"
               disabled
               className="w-full px-4 py-3 bg-gray-200 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-gray-700 cursor-not-allowed"
             />
@@ -41,7 +41,7 @@ export default function EditPage() {
             <label className="block text-sm font-semibold mb-1">Email</label>
             <input
               type="email"
-              defaultValue="galang13l@gmail.com"
+              placeholder="galang13l@gmail.com"
               disabled
               className="w-full px-4 py-3 bg-gray-200 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent cursor-not-allowed"
             />

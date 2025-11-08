@@ -2,6 +2,7 @@
 import VideoEdukasi from "@/components/ui/VideoEdukasi";
 import { dataPendukung } from "@/data/datas";
 import { MoveRight } from "lucide-react";
+import Link from "next/link";
 
 export default function EdukasiPage() {
   const videoId = "bRkrRlN1q_c";
@@ -22,10 +23,10 @@ export default function EdukasiPage() {
 
               <p className="text-gray-700 leading-relaxed mb-4">{item.description}</p>
 
-              <a href={item.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-cyan-600 hover:text-cyan-800 font-medium transition-colors duration-200 ">
+              <Link href={item.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-cyan-600 hover:text-cyan-800 font-medium transition-colors duration-200 ">
                 Baca selengkapnya
                 <MoveRight className="w-5 h-5" />
-              </a>
+              </Link>
             </div>
           ))}
         </div>
