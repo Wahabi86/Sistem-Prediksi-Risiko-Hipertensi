@@ -1,21 +1,22 @@
 "use client";
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
+import AuthStyle from "@/components/ui/AuthStyle";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen grid lg:grid-cols-2">
       {/* Section Kiri */}
+      <AuthStyle />
 
       {/* Section Kanan */}
       <div className="flex items-center justify-center p-8 lg:p-12">
         <div className="w-full max-w-md space-y-8">
           <div>
-            <h2 className="text-4xl font-bold text-gray-900 text-center">Mulai Sekarang</h2>
+            <h2 className="text-5xl font-bold text-center">Mulai Sekarang</h2>
           </div>
 
           {/* Form */}
@@ -44,12 +45,14 @@ export default function LoginPage() {
             </div>
 
             {/* Tombol Masuk */}
-            <Link
-              href="/"
-              className="block w-full text-center bg-gradient-to-r from-cyan-800 to-[#0872C2] hover:from-cyan-700 hover:to-[#0A7FD4] text-white font-semibold py-3 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
-            >
-              Masuk
-            </Link>
+            <div className="text-center">
+              <Link
+                href="/"
+                className="inline-block text-center bg-gradient-to-r from-cyan-800 to-[#0872C2] hover:from-cyan-700 hover:to-[#0A7FD4] text-white font-semibold py-3 px-12 rounded-full transition-colors duration-200 shadow-lg hover:shadow-xl"
+              >
+                Masuk
+              </Link>
+            </div>
 
             {/* Register */}
             <p className="text-center text-gray-600">
