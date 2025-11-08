@@ -9,7 +9,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen">
-      {/* KIRI - Branding */}
+      {/* Section Kiri */}
 
       {/* Section Kanan */}
       <div className="flex items-center justify-center p-8 lg:p-12">

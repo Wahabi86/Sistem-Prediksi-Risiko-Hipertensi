@@ -21,7 +21,7 @@ export default function EditPage() {
         <form className="space-y-5">
           {/* Nama Pengguna */}
           <div>
-            <label className="block text-sm font-semibold  mb-2">Nama Pengguna</label>
+            <label className="block text-sm font-semibold mb-2">Nama Pengguna</label>
             <input type="text" defaultValue="GALANG ABDEE PRASATYA" className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent " />
           </div>
 
