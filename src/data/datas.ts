@@ -12,3 +12,28 @@ export const dataPendukung = [
     link: "https://books.google.co.id/books?hl=id&lr=&id=yAVjEAAAQBAJ&oi=fnd&pg=PP1&dq=jurnal+tentang+hipertensi&ots=NOuqoA1mCx&sig=Xrl0aN-eXdFMIOBV5jaS_9dCCSw&redir_esc=y#v=onepage&q=jurnal%20tentang%20hipertensi&f=false",
   },
 ];
+
+
+
+export const dataPertanyaan = [
+  {
+    question: "1. Apa penyebab utama hipertensi?",
+    answer: "Penyebab hipertensi bisa bervariasi, antara lain faktor keturunan, pola makan tinggi garam, kurang aktivitas fisik, stres, obesitas, dan kebiasaan merokok atau konsumsi alkohol berlebihan.",
+  },
+  {
+    question: "2. Apakah hipertensi bisa sembuh?",
+    answer: "Hipertensi tidak selalu bisa disembuhkan, tetapi bisa dikontrol dengan gaya hidup sehat seperti menjaga pola makan, olahraga teratur, mengurangi stres, dan mengikuti pengobatan dokter secara rutin.",
+  },
+  {
+    question: "3. Bagaimana cara mencegah hipertensi?",
+    answer: "Pencegahan dapat dilakukan dengan menjaga berat badan ideal, mengurangi asupan garam, rutin berolahraga, menghindari rokok dan alkohol, serta rutin memeriksa tekanan darah.",
+  },
+  {
+    question: "4. Apakah hasil prediksi dari aplikasi sama dengan diagnosis dokter?",
+    answer: "Tidak, hasil prediksi dari aplikasi ini hanya bersifat indikatif atau pendukung keputusan awal, bukan diagnosis medis. Untuk hasil yang akurat, sebaiknya tetap berkonsultasi dengan tenaga medis profesional.",
+  },
+  {
+    question: "5. Apakah hipertensi bisa terjadi pada usia muda?",
+    answer: "Ya, hipertensi tidak hanya terjadi pada orang tua. Gaya hidup tidak sehat seperti kurang tidur, stres, konsumsi makanan tinggi garam dan jarang berolahraga dapat menyebabkan tekanan darah tinggi bahkan pada usia muda.",
+  },
+];
