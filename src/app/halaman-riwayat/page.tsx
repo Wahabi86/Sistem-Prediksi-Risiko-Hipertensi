@@ -39,13 +39,11 @@ export default function RiwayatPage() {
       {/* Header */}
       <div className="container mx-auto px-4 my-13 max-w-7xl">
         {datasRiwayat.length > 0 && (
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold mb-2">Riwayat Prediksi</h1>
-          </div>
+            <h1 className="text-3xl font-bold mb-4">RIWAYAT PREDIKSI</h1>
         )}
 
         {/* Main Content */}
-        <div className="space-y-6 pb-13">
+        <div className="space-y-6">
           {datasRiwayat.map((riwayat) => (
             <div key={riwayat.id} className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-200">
               {/* Riwayat Content */}

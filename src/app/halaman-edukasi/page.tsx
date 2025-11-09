@@ -14,7 +14,7 @@ export default function EdukasiPage() {
 
       {/* Section Informasi Tambahan (Buku,Jurnal,Artikel) */}
       <div className="container mx-auto my-13 max-w-7xl">
-        <h1 className="text-3xl font-bold mb-2">Referensi & Bacaan</h1>
+        <h1 className="text-3xl font-bold mb-4">REFERENSI & BACAAN</h1>
 
         <div className="space-y-8">
           {dataPendukung.map((item, index) => (
