@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import ArrowIcon from "@/components/ui/Icons";
 import ButtonPrediksi from "@/components/ui/ButtonPrediksi";
 import Pertanyaan from "@/components/ui/Pertanyaan";
+import Tutorial from "@/components/ui/Tutorial";
 
 const slides = [
   {
@@ -74,6 +75,9 @@ export default function Home() {
           ))}
         </div>
       </div>
+
+      {/* Section Tutorial */}
+      <Tutorial />
 
       {/* Section FAQ */}
       <Pertanyaan />

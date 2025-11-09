@@ -13,7 +13,20 @@ export const dataPendukung = [
   },
 ];
 
-
+export const caraPenggunaan = [
+  {
+    title: "1. Input Data Cepat",
+    description: "Pengguna dapat langsung memasukkan data dasar seperti tekanan darah, usia, dan berat badan melalui form prediksi yang ada di beranda.",
+  },
+  {
+    title: "2. Klik Tombol Prediksi",
+    description: 'Setelah mengisi data, pengguna dapat menekan tombol "Mulai Prediksi Sekarang" untuk memproses hasil prediksi.',
+  },
+  {
+    title: "3. Melihat Hasil Dan Saran",
+    description: "Hasil prediksi langsung muncul di halaman, disertai keterangan risiko hipertensi dan rekomendasi singkat.",
+  },
+];
 
 export const dataPertanyaan = [
   {
