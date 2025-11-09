@@ -6,7 +6,7 @@ export default function EditPage() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="container mx-auto max-w-5xl my-13 px-4">
+    <div className="container mx-auto max-w-5xl my-12 px-4">
       <div className="bg-white rounded-2xl shadow-xl p-8">
         {/* Title */}
         <div className="flex items-cent gap-2 text-cyan-600">

@@ -32,7 +32,7 @@ export default function Home() {
 
   return (
     <div className="container mx-auto px-4">
-      <div className="relative h-[550px] rounded-2xl shadow-lg mt-13 overflow-hidden">
+      <div className="relative h-[550px] rounded-2xl shadow-lg my-12 overflow-hidden">
         {/* Background image */}
         <Image src={slides[current].image} alt={slides[current].title} fill className="object-cover object-[center_30%]" priority />
 

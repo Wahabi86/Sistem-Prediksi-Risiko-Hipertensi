@@ -19,8 +19,8 @@ export default function VideoEdukasi({ videoId }: VideoEdukasiProps) {
   };
 
   return (
-    <div className="flex justify-center items-center mx-4 mt-13">
-      <div className="w-full max-w-7xl">
+    <div className="flex justify-center items-center mx-4 mt-12">
+      <div className="mx-auto w-full max-w-7xl px-4">
         {/* Judul video */}
         <h1 className="text-3xl font-bold mb-4">VIDEO EDUKASI HIPERTENSI</h1>
 

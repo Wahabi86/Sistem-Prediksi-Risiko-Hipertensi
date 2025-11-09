@@ -54,7 +54,7 @@ export default function FormPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-13">
+    <div className="container mx-auto px-4 py-12">
       <div className="bg-white rounded-2xl p-8 max-w-7xl mx-auto shadow-[0_4px_10px_rgba(0,0,0,0.15)]">
         {/* Header */}
         <div className="container mx-auto px-4 mb-8">

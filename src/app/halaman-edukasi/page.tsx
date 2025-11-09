@@ -13,13 +13,13 @@ export default function EdukasiPage() {
       <VideoEdukasi videoId={videoId} />
 
       {/* Section Informasi Tambahan (Buku,Jurnal,Artikel) */}
-      <div className="container mx-auto my-13 max-w-7xl">
+      <div className="container mx-auto my-12 max-w-7xl px-4">
         <h1 className="text-3xl font-bold mb-4">REFERENSI & BACAAN</h1>
 
         <div className="space-y-8">
           {dataPendukung.map((item, index) => (
             <div key={index} className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">{item.title}</h2>
+              <h2 className="text-xl font-semibold mb-2">{item.title}</h2>
 
               <p className="text-gray-700 leading-relaxed mb-4">{item.description}</p>
 
