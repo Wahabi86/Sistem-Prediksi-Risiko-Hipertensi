@@ -13,7 +13,7 @@ export default function EdukasiPage() {
       <VideoEdukasi videoId={videoId} />
 
       {/* Section Informasi Tambahan (Buku,Jurnal,Artikel) */}
-      <div className="container mx-auto my-12 max-w-7xl px-4">
+      <div className="container mx-auto my-12 px-4">
         <h1 className="text-3xl font-bold mb-4">REFERENSI & BACAAN</h1>
 
         <div className="space-y-8">

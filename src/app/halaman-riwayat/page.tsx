@@ -37,7 +37,7 @@ export default function RiwayatPage() {
   return (
     <>
       {/* Header */}
-      <div className="container mx-auto px-4 my-12 max-w-7xl">
+      <div className="container mx-auto px-4 my-12">
         {datasRiwayat.length > 0 && (
             <h1 className="text-3xl font-bold mb-4">RIWAYAT PREDIKSI</h1>
         )}
