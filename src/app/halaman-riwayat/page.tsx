@@ -1,35 +1,9 @@
 "use client";
 import { DownloadIcon, FileTextIcon } from "@/components/ui/Icons";
 import Link from "next/link";
+import { datasRiwayat } from "@/data/datas";
 
 export default function RiwayatPage() {
-  const datasRiwayat = [
-    {
-      id: 1,
-      tanggal: "20/01/2025",
-      gejala: "Tingkat stres tinggi, waktu tidur kurang dari 5 jam, jarang olahraga, perokok aktif",
-      hasilPrediksi: "Berisiko Hipertensi",
-      probabilitas: "82%",
-      faktorPendukung: "Usia 40-49 tahun, riwayat keluarga ada hipertensi, BMI obesitas (32.5)",
-    },
-    {
-      id: 2,
-      tanggal: "10/05/2025",
-      gejala: "Tingkat stres sedang, waktu tidur 5-6 jam, olahraga 3-4 kali per minggu,tidak merokok",
-      hasilPrediksi: "Tidak Berisiko Hipertensi",
-      probabilitas: "15%",
-      faktorPendukung: "Usia 20-29 tahun, BMI normal (22.1)",
-    },
-    {
-      id: 3,
-      tanggal: "9/09/2025",
-      gejala: "Tingkat stress sedang, waktu tidur 5-6 jam, olahraga 5 kali per minggu, mantan perokok",
-      hasilPrediksi: "Berisiko Hipertensi",
-      probabilitas: "60%",
-      faktorPendukung: "Usia 40-49 tahun, riwayat keluarga ada penyakit jantung, BMI obesitas (37.5)",
-    },
-  ];
-
   const handlePdf = (id: number) => {
     alert("Berhasil Di Download");
   };
@@ -38,9 +12,7 @@ export default function RiwayatPage() {
     <>
       {/* Header */}
       <div className="container mx-auto px-4 my-12">
-        {datasRiwayat.length > 0 && (
-            <h1 className="text-3xl font-bold mb-4">RIWAYAT PREDIKSI</h1>
-        )}
+        {datasRiwayat.length > 0 && <h1 className="text-3xl font-bold mb-4">RIWAYAT PREDIKSI</h1>}
 
         {/* Main Content */}
         <div className="space-y-6">

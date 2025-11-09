@@ -7,24 +7,7 @@ import ButtonPrediksi from "@/components/ui/ButtonPrediksi";
 import Pertanyaan from "@/components/ui/Pertanyaan";
 import Tutorial from "@/components/ui/Tutorial";
 import TentangKami from "@/components/ui/TentangKami";
-
-const slides = [
-  {
-    title: "Selamat Datang!",
-    subTitle: "Yuk cek risiko hipertensi sejak dini,",
-    text: "Jaga kesehatan anda untuk masa depan yang lebih baik.",
-    buttonText: "Mulai Prediksi",
-    buttonLink: "/form-prediksi",
-    image: "/images/foto1.jpg",
-  },
-  {
-    title: "Edukasi Hipertensi",
-    text: "Pelajari cara menjaga tekanan darah tetap stabil dengan tips dan edukasi terpercaya.",
-    buttonText: "Lihat Edukasi",
-    buttonLink: "/halaman-edukasi",
-    image: "/images/foto2.jpg",
-  },
-];
+import { slides } from "@/data/datas";
 
 export default function Home() {
   const [current, setCurrent] = useState(0);
@@ -78,7 +61,7 @@ export default function Home() {
       </div>
       {/* Section About Website */}
       <TentangKami />
-      
+
       {/* Section Tutorial */}
       <Tutorial />
 

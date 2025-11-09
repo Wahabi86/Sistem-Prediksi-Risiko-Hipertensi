@@ -1,3 +1,48 @@
+export const slides = [
+  {
+    title: "Selamat Datang!",
+    subTitle: "Yuk cek risiko hipertensi sejak dini,",
+    text: "Jaga kesehatan anda untuk masa depan yang lebih baik.",
+    buttonText: "Mulai Prediksi",
+    buttonLink: "/form-prediksi",
+    image: "/images/foto1.jpg",
+  },
+  {
+    title: "Edukasi Hipertensi",
+    text: "Pelajari cara menjaga tekanan darah tetap stabil dengan tips dan edukasi terpercaya.",
+    buttonText: "Lihat Edukasi",
+    buttonLink: "/halaman-edukasi",
+    image: "/images/foto2.jpg",
+  },
+];
+
+export const datasRiwayat = [
+  {
+    id: 1,
+    tanggal: "20/01/2025",
+    gejala: "Tingkat stres tinggi, waktu tidur kurang dari 5 jam, jarang olahraga, perokok aktif",
+    hasilPrediksi: "Berisiko Hipertensi",
+    probabilitas: "82%",
+    faktorPendukung: "Usia 40-49 tahun, riwayat keluarga ada hipertensi, BMI obesitas (32.5)",
+  },
+  {
+    id: 2,
+    tanggal: "10/05/2025",
+    gejala: "Tingkat stres sedang, waktu tidur 5-6 jam, olahraga 3-4 kali per minggu,tidak merokok",
+    hasilPrediksi: "Tidak Berisiko Hipertensi",
+    probabilitas: "15%",
+    faktorPendukung: "Usia 20-29 tahun, BMI normal (22.1)",
+  },
+  {
+    id: 3,
+    tanggal: "9/09/2025",
+    gejala: "Tingkat stress sedang, waktu tidur 5-6 jam, olahraga 5 kali per minggu, mantan perokok",
+    hasilPrediksi: "Berisiko Hipertensi",
+    probabilitas: "60%",
+    faktorPendukung: "Usia 40-49 tahun, riwayat keluarga ada penyakit jantung, BMI obesitas (37.5)",
+  },
+];
+
 export const dataPendukung = [
   {
     title: "Mengatasi Hipertensi",

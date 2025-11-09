@@ -11,6 +11,9 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "Hipertensi App",
   description: "Aplikasi edukasi hipertensi",
+  icons: {
+    icon: "/images/logo.png",
+  },
 };
 
 export default function RootLayout({
