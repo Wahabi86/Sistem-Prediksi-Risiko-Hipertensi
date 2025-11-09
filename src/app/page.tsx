@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import ArrowIcon from "@/components/ui/Icons";
+import ButtonPrediksi from "@/components/ui/ButtonPrediksi";
 
 const slides = [
   {
@@ -72,6 +73,9 @@ export default function Home() {
           ))}
         </div>
       </div>
+
+      {/* Section CTA */}
+      <ButtonPrediksi />
     </div>
   );
 }
