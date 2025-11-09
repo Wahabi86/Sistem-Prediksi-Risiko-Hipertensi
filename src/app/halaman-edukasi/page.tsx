@@ -18,12 +18,12 @@ export default function EdukasiPage() {
 
         <div className="space-y-8">
           {dataPendukung.map((item, index) => (
-            <div key={index} className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
-              <h2 className="text-xl font-semibold mb-2">{item.title}</h2>
+            <div key={index} className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+              <h2 className="text-2xl font-semibold mb-2">{item.title}</h2>
 
-              <p className="text-gray-700 leading-relaxed mb-4">{item.description}</p>
+              <p className="leading-relaxed mb-4 text-lg text-justify">{item.description}</p>
 
-              <Link href={item.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-cyan-600 hover:text-cyan-800 font-medium transition-colors duration-200 ">
+              <Link href={item.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-cyan-600 hover:text-cyan-800 font-medium transition-colors duration-200 text-lg">
                 Baca selengkapnya
                 <MoveRight className="w-5 h-5" />
               </Link>

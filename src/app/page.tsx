@@ -6,6 +6,7 @@ import ArrowIcon from "@/components/ui/Icons";
 import ButtonPrediksi from "@/components/ui/ButtonPrediksi";
 import Pertanyaan from "@/components/ui/Pertanyaan";
 import Tutorial from "@/components/ui/Tutorial";
+import TentangKami from "@/components/ui/TentangKami";
 
 const slides = [
   {
@@ -75,7 +76,9 @@ export default function Home() {
           ))}
         </div>
       </div>
-
+      {/* Section About Website */}
+      <TentangKami />
+      
       {/* Section Tutorial */}
       <Tutorial />
 
