@@ -12,13 +12,13 @@ export default function Pertanyaan() {
 
   return (
     <div className="container mx-auto my-12">
-      <h2 className="text-3xl font-bold mb-8 text-center">PERTANYAAN YANG SERING DIAJUKAN</h2>
+      <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center">PERTANYAAN YANG SERING DIAJUKAN</h2>
 
       <div className="mx-auto max-w-5xl space-y-6">
         {dataPertanyaan.map((item, index) => (
           <div key={index} className="border border-gray-300 rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
             {/* Section Pertanyaan */}
-            <button onClick={() => logicQuestion(index)} className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors duration-200">
+            <button onClick={() => logicQuestion(index)} className="w-full flex items-center justify-between p-4 sm:p-6 text-left hover:bg-gray-50 transition-colors duration-200">
               <span className="text-lg font-medium">{item.question}</span>
               {openQuestion === index ? <ChevronUp className="w-6 h-6  flex-shrink-0 ml-4" /> : <ChevronDown className="w-6 h-6  flex-shrink-0 ml-4" />}
             </button>
