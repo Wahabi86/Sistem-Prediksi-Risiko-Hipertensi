@@ -59,8 +59,11 @@ export default function EditPage() {
           </div>
 
           {/* Button Simpan */}
-          <div className="pt-4">
-            <button type="submit" className="w-full bg-gradient-to-r from-cyan-800 to-[#0872C2] hover:from-cyan-700 hover:to-[#0A7FD4] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg">
+          <div className="text-center pt-6 border-t border-gray-200 space-y-4">
+            <button
+              type="submit"
+              className="bg-gradient-to-r from-cyan-800 to-[#0872C2] hover:from-cyan-700 hover:to-[#0A7FD4] text-white px-12 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transform transition-all duration-500 ease-in-out active:scale-95 cursor-pointer"
+            >
               Simpan Perubahan
             </button>
           </div>

@@ -16,7 +16,7 @@ export default function LoginPage() {
       <div className="flex items-center justify-center p-8 lg:p-12">
         <div className="w-full max-w-md space-y-8">
           <div>
-            <h2 className="text-5xl font-bold text-center">Mulai Sekarang</h2>
+            <h2 className="text-5xl font-bold text-center">MULAI SEKARANG</h2>
           </div>
 
           {/* Form */}

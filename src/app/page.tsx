@@ -27,9 +27,9 @@ export default function Home() {
         <div className="absolute inset-0 flex flex-col justify-center items-start px-10 bg-black/40 text-white">
           <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-snug drop-shadow-lg">{slides[current].title}</h1>
           {/* Only appears if there is */}
-          {slides[current].subTitle && <p className="text-2xl md:text-3xl font-semibold mb-4 text-blue-300  leading-snug drop-shadow-md">{slides[current].subTitle}</p>}
+          {slides[current].subTitle && <p className="text-2xl md:text-3xl font-semibold text-[#93C5FD] mb-4 leading-snug  drop-shadow-md">{slides[current].subTitle}</p>}
 
-          <p className="text-xl md:text-2xl mb-8 max-w-2xl leading-relaxed drop-shadow-md">{slides[current].text}</p>
+          <p className="text-2xl mb-8 max-w-2xl leading-relaxed drop-shadow-md">{slides[current].text}</p>
           <button
             onClick={() => router.push(slides[current].buttonLink)}
             className="bg-gradient-to-r from-cyan-800 to-[#0872C2] hover:from-cyan-700 hover:to-[#0A7FD4] text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-2xl transform transition-all duration-500 ease-in-out active:scale-95 cursor-pointer text-lg md:text-xl"
