@@ -20,8 +20,8 @@ export default function Tutorial() {
       {/* Tutorial 3 */}
       <div className="flex justify-center">
         <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 w-full md:max-w-2xl">
-          <h3 className="text-2xl font-bold mb-4">{caraPenggunaan[2].title}</h3>
-          <p className="text-xl leading-relaxed">{caraPenggunaan[2].description}</p>
+          <h3 className="text-xl sm:text-2xl font-bold mb-4">{caraPenggunaan[2].title}</h3>
+          <p className="text-lg sm:text-xl leading-relaxed">{caraPenggunaan[2].description}</p>
         </div>
       </div>
     </div>

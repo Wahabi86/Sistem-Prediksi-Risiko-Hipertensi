@@ -61,7 +61,7 @@ export const dataPendukung = [
 export const caraPenggunaan = [
   {
     title: "1. Input Data Cepat",
-    description: "Pengguna dapat langsung memasukkan data dasar seperti tekanan darah, usia, dan berat badan melalui form prediksi yang ada di beranda.",
+    description: "Pengguna dapat langsung memasukkan data kesehatan seperti tekanan darah, usia, dan berat badan melalui form prediksi.",
   },
   {
     title: "2. Klik Tombol Prediksi",
