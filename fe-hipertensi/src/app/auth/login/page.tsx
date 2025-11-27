@@ -70,7 +70,7 @@ export default function LoginPage() {
             {/* Tombol Masuk */}
             <div className="text-center pt-2">
               <Link
-                href="/"
+                href="/beranda"
                 className="inline-block text-center bg-gradient-to-r from-cyan-800 to-[#0872C2] hover:from-cyan-700 hover:to-[#0A7FD4] text-white font-semibold py-2.5 sm:py-3 px-8 sm:px-12 text-sm sm:text-base rounded-full transition-all duration-200 shadow-lg hover:shadow-xl active:scale-95"
               >
                 Masuk

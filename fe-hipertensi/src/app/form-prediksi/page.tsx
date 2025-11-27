@@ -313,7 +313,7 @@ export default function FormPage() {
                 Mulai Prediksi Sekarang
               </button>
               <div className="flex justify-center">
-                <Link href="/" className="flex items-center gap-2 text-cyan-600 hover:text-cyan-800 font-medium transition-colors duration-200 text-sm sm:text-base">
+                <Link href="/beranda" className="flex items-center gap-2 text-cyan-600 hover:text-cyan-800 font-medium transition-colors duration-200 text-sm sm:text-base">
                   <MoveLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                   Kembali ke Beranda
                 </Link>

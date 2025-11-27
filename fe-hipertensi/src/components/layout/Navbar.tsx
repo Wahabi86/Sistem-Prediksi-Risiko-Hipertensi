@@ -34,7 +34,7 @@ export default function Navbar() {
   const isActive = (path: string) => pathname === path;
 
   const navLinks = [
-    { href: "/", label: "Beranda" },
+    { href: "/beranda", label: "Beranda" },
     { href: "/halaman-edukasi", label: "Edukasi" },
     { href: "/halaman-riwayat", label: "Riwayat" },
   ];
@@ -51,7 +51,7 @@ export default function Navbar() {
               </button>
 
               {/* Logo */}
-              <Link href="/" className="flex items-center space-x-2 flex-shrink-0">
+              <Link href="/beranda" className="flex items-center space-x-2 flex-shrink-0">
                 <div className="bg-white rounded-full p-1">
                   <Image src="/images/logo.png" alt="Logo" width={40} height={40} className="rounded-full" />
                 </div>
