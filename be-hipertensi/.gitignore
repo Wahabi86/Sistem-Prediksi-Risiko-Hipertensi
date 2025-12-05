@@ -1,0 +1,27 @@
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment file
+.env
+*.env
+
+# Logs
+*.log
+
+# ML Models
+*.pkl
+*.joblib
+
+# VSCode
+.vscode/
+
+# OS generated
+.DS_Store
+Thumbs.db
