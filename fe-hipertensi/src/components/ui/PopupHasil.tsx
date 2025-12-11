@@ -16,7 +16,7 @@ export default function PopupHasil({ onClose }: PopupHasilProps) {
 
   return (
     <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg sm:max-w-xl lg:max-w-2xl p-4 sm:p-6 md:p-8 relative">
+      <div className="bg-[#f9fafb] rounded-2xl shadow-xl w-full max-w-lg sm:max-w-xl lg:max-w-2xl p-4 sm:p-6 md:p-8 relative">
         {/* Tombol Close */}
         <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 hover:text-gray-800">
           <X size={24} />
