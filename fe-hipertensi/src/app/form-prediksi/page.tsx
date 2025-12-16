@@ -214,7 +214,7 @@ export default function FormPage() {
                     className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900 text-sm"
                   >
                     <option value="">Pilih Riwayat Tekanan Darah</option>
-                    {["Normal (<120 / <80 mmHg)", "Pra-hipertensi (120–139 / 80–89 mmHg)", "Hipertensi Stage 1 (140–159 / 90–99 mmHg)", "Hipertensi Stage 2 (≥160 / ≥100 mmHg)"].map((option) => (
+                    {["Normal (<120 / <80 mmHg)", "Pra-hipertensi (120–139 / 80–89 mmHg)", "Hipertensi (140–159 / 90–99 mmHg)"].map((option) => (
                       <option key={option} value={option}>
                         {option}
                       </option>
