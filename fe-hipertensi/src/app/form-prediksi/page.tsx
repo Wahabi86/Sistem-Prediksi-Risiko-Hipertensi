@@ -121,23 +121,35 @@ export default function FormPage() {
                 <h2 className="text-base sm:text-lg font-semibold text-gray-800">Gaya Hidup</h2>
               </div>
               <hr className="border-gray-300 mb-4 sm:mb-6" />
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 {/* Section Tingkat Stres */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2 sm:mb-3">Tingkat Stres</label>
-                  <select
-                    value={formData.tingkatStres}
+                  <label className="block text-sm font-semibold mb-4">Tingkat Stres</label>
+                  {/* Slider */}
+                  <input
+                    type="range"
+                    min={0}
+                    max={10}
+                    step={1}
+                    value={formData.tingkatStres || 0}
                     onChange={(e) => handleInputChange("tingkatStres", e.target.value)}
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900 text-sm"
-                  >
-                    <option value="">Pilih Tingkat Stres</option>
-                    {["Rendah (jarang merasa tertekan)", "Sedang (kadang merasa cemas/tertekan)", "Tinggi (sering cemas, tertekan, sulit mengendalikan stres)"].map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
+                    className="stress-slider w-full"
+                    style={{
+                      background: `linear-gradient(to right, #0891b2 0%, #0891b2 ${((parseInt(formData.tingkatStres) || 0) / 10) * 100}%, #e5e7eb ${((parseInt(formData.tingkatStres) || 0) / 10) * 100}%, #e5e7eb 100%)`,
+                    }}
+                  />
+
+                  {/* Angka 0–10 */}
+                  <div className="flex justify-between text-xs text-gray-500 mt-2 px-1">
+                    {Array.from({ length: 11 }, (_, i) => (
+                      <span key={i}>{i}</span>
                     ))}
-                  </select>
+                  </div>
+                  {/* Keterangan */}
+                  <div className="mt-3 text-xs sm:text-sm text-gray-600 flex justify-between">
+                    <span>0 (Tidak stres)</span>
+                    <span>10 (Sangat stres)</span>
+                  </div>
                 </div>
 
                 {/* Section Waktu Tidur */}

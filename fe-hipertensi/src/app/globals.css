@@ -24,3 +24,37 @@ html {
   margin-top: auto;
   border-top: 1px solid #ddd;
 }
+
+/* Slider Tingkat Stres (Global) */
+.stress-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 50px;
+  background: #e5e7eb;
+  cursor: pointer;
+}
+
+/* Thumb (Bulatan) */
+.stress-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  background-color: #0891b2;
+  border: 2px solid #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Hover effect */
+.stress-slider::-webkit-slider-thumb:hover {
+  background-color: #0e7490;
+}
+
+.stress-slider::-moz-range-thumb:hover {
+  background-color: #0e7490;
+}
