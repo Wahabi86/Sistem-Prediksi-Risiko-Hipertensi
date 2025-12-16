@@ -166,7 +166,7 @@ export default function FormPage() {
                     className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900 text-sm"
                   >
                     <option value="">Pilih Tingkat Aktivitas Olahraga</option>
-                    {["Jarang / Tidak pernah", "1–2 kali per minggu", "3–4 kali per minggu", "≥ 5 kali per minggu"].map((option) => (
+                    {["Tidak pernah", "1–2 kali per minggu", "3–4 kali per minggu", "≥ 5 kali per minggu"].map((option) => (
                       <option key={option} value={option}>
                         {option}
                       </option>
@@ -179,7 +179,7 @@ export default function FormPage() {
                   <label className="block text-sm sm:text-base font-semibold text-gray-800 mb-3">Status Merokok</label>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                    {["Tidak merokok", "Perokok aktif", "Mantan perokok"].map((option) => (
+                    {["Tidak merokok", "Perokok aktif"].map((option) => (
                       <button
                         key={option}
                         type="button"
@@ -214,7 +214,7 @@ export default function FormPage() {
                     className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900 text-sm"
                   >
                     <option value="">Pilih Riwayat Tekanan Darah</option>
-                    {["Normal (<120 / <80 mmHg)", "Pra-hipertensi (120–139 / 80–89 mmHg)", "Hipertensi Stage 1 (140–159 / 90–99 mmHg)", "Hipertensi Stage 2 (≥160 / ≥100 mmHg)", "Tidak tahu / Belum pernah periksa"].map((option) => (
+                    {["Normal (<120 / <80 mmHg)", "Pra-hipertensi (120–139 / 80–89 mmHg)", "Hipertensi Stage 1 (140–159 / 90–99 mmHg)", "Hipertensi Stage 2 (≥160 / ≥100 mmHg)"].map((option) => (
                       <option key={option} value={option}>
                         {option}
                       </option>
@@ -223,7 +223,7 @@ export default function FormPage() {
                 </div>
 
                 {/* Section Riwayat Keluarga */}
-                <div>
+                <div className="md:col-span-2">
                   <label className="block text-sm font-semibold text-gray-700 mb-2 sm:mb-3">Riwayat Keluarga</label>
                   <select
                     value={formData.riwayatKeluarga}
@@ -231,24 +231,7 @@ export default function FormPage() {
                     className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900 text-sm"
                   >
                     <option value="">Pilih Riwayat Keluarga</option>
-                    {["Tidak ada", "Ada hipertensi", "Ada penyakit jantung", "Ada stroke", "Lainnya"].map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Section Jenis Obat */}
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2 sm:mb-3">Jenis Obat (Opsional)</label>
-                  <select
-                    value={formData.jenisObat}
-                    onChange={(e) => handleInputChange("jenisObat", e.target.value)}
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900 text-sm"
-                  >
-                    <option value="">Pilih Jenis Obat</option>
-                    {["Tidak ada", "Obat darah tinggi (antihipertensi)", "Obat jantung", "Obat diabetes", "Obat kolesterol", "Lainnya"].map((option) => (
+                    {["Tidak ada", "Ada hipertensi"].map((option) => (
                       <option key={option} value={option}>
                         {option}
                       </option>
