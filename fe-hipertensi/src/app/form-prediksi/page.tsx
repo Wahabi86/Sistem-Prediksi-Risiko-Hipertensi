@@ -4,6 +4,12 @@ import { User, Brain, Stethoscope, Dumbbell, MoveLeft } from "lucide-react";
 import PopupHasil from "@/components/ui/PopupHasil";
 import Link from "next/link";
 
+interface PredictionResult {
+  prediction: number;
+  status: string;
+  probability: string;
+}
+
 export default function FormPage() {
   const [formData, setFormData] = useState({
     gender: "",
@@ -20,6 +26,11 @@ export default function FormPage() {
   });
 
   const [bmi, setBmi] = useState("");
+
+  const [predictionResult, setPredictionResult] = useState<PredictionResult | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   const handleInputChange = (field: keyof typeof formData, value: string) => {
     setFormData((prev) => ({
       ...prev,
@@ -44,12 +55,69 @@ export default function FormPage() {
   // menampilkan popup hasil
   const [showPopup, setShowPopup] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
-    console.log("BMI:", bmi);
+    setIsLoading(true);
+    setError(null);
+    setPredictionResult(null);
 
-    setShowPopup(true); // tampilkan popup
+    const requiredFields: (keyof typeof formData)[] = ["usia", "tingkatStres", "waktuTidur", "riwayatTekananDarah", "riwayatKeluarga", "olahraga", "statusMerokok"];
+
+    for (const field of requiredFields) {
+      if (!formData[field]) {
+        alert("Harap lengkapi semua data");
+        setIsLoading(false);
+        return;
+      }
+    }
+
+    if (!bmi) {
+      alert("Harap masukkan Tinggi dan Berat Badan untuk menghitung BMI.");
+      setIsLoading(false);
+      return;
+    }
+
+    const payload = {
+      usia: formData.usia,
+      tingkatStres: formData.tingkatStres,
+      waktuTidur: formData.waktuTidur,
+      riwayatTekananDarah: formData.riwayatTekananDarah,
+      riwayatKeluarga: formData.riwayatKeluarga,
+      olahraga: formData.olahraga,
+      statusMerokok: formData.statusMerokok,
+      bmi: bmi,
+    };
+
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      const response = await fetch(`${apiUrl}/api/prediksi`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // menangani error dari backend
+        throw new Error(data.message || "Gagal mendapatkan hasil prediksi.");
+      }
+
+      // Simpan Hasil dan Tampilkan Popup
+      setPredictionResult(data);
+      setShowPopup(true);
+    } catch (err: unknown) {
+      // Melakukan pengecekan apakah err memiliki properti message
+      const errorMessage = err instanceof Error ? err.message : "Terjadi kesalahan yang tidak diketahui";
+
+      console.error("Fetch Error:", errorMessage);
+      setError(errorMessage);
+      alert(`Terjadi Kesalahan: ${errorMessage}`);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -135,7 +203,7 @@ export default function FormPage() {
                     onChange={(e) => handleInputChange("tingkatStres", e.target.value)}
                     className="stress-slider w-full"
                     style={{
-                      background: `linear-gradient(to right, #0891b2 0%, #0891b2 ${((parseInt(formData.tingkatStres) || 0) / 10) * 100}%, #e5e7eb ${((parseInt(formData.tingkatStres) || 0) / 10) * 100}%, #e5e7eb 100%)`,
+                      background: `linear-gradient(to right, #0891b2 ${Number(formData.tingkatStres) * 10}%, #e5e7eb ${Number(formData.tingkatStres) * 10}%)`,
                     }}
                   />
 
@@ -160,8 +228,10 @@ export default function FormPage() {
                     onChange={(e) => handleInputChange("waktuTidur", e.target.value)}
                     className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900 text-sm"
                   >
-                    <option value="">Pilih Waktu Tidur</option>
-                    {["< 5 jam", "5–6 jam", "7–8 jam (ideal)", "> 8 jam"].map((option) => (
+                    <option value="" disabled>
+                      Pilih Waktu Tidur
+                    </option>
+                    {["< 5 jam", "5–6 jam", "7–8 jam", "> 8 jam"].map((option) => (
                       <option key={option} value={option}>
                         {option}
                       </option>
@@ -177,7 +247,9 @@ export default function FormPage() {
                     onChange={(e) => handleInputChange("olahraga", e.target.value)}
                     className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900 text-sm"
                   >
-                    <option value="">Pilih Tingkat Aktivitas Olahraga</option>
+                    <option value="" disabled>
+                      Pilih Tingkat Aktivitas Olahraga
+                    </option>
                     {["Tidak pernah", "1–2 kali per minggu", "3–4 kali per minggu", "≥ 5 kali per minggu"].map((option) => (
                       <option key={option} value={option}>
                         {option}
@@ -225,7 +297,9 @@ export default function FormPage() {
                     onChange={(e) => handleInputChange("riwayatTekananDarah", e.target.value)}
                     className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900 text-sm"
                   >
-                    <option value="">Pilih Riwayat Tekanan Darah</option>
+                    <option value="" disabled>
+                      Pilih Riwayat Tekanan Darah
+                    </option>
                     {["Normal (<120 / <80 mmHg)", "Pra-hipertensi (120–139 / 80–89 mmHg)", "Hipertensi (140–159 / 90–99 mmHg)"].map((option) => (
                       <option key={option} value={option}>
                         {option}
@@ -242,7 +316,9 @@ export default function FormPage() {
                     onChange={(e) => handleInputChange("riwayatKeluarga", e.target.value)}
                     className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900 text-sm"
                   >
-                    <option value="">Pilih Riwayat Keluarga</option>
+                    <option value="" disabled>
+                      Pilih Riwayat Keluarga
+                    </option>
                     {["Tidak ada", "Ada hipertensi"].map((option) => (
                       <option key={option} value={option}>
                         {option}
@@ -303,9 +379,12 @@ export default function FormPage() {
             <div className="text-center pt-4 sm:pt-6 border-t border-gray-200 space-y-3 sm:space-y-4">
               <button
                 type="submit"
-                className="w-full sm:w-auto bg-gradient-to-r from-cyan-800 to-[#0872C2] hover:from-cyan-700 hover:to-[#0A7FD4] text-white px-8 sm:px-12 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg shadow-lg hover:shadow-xl transform transition-all duration-500 ease-in-out active:scale-95"
+                disabled={isLoading}
+                className={`w-full sm:w-auto bg-gradient-to-r from-cyan-800 to-[#0872C2] text-white px-8 sm:px-12 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg shadow-lg hover:shadow-xl transform transition-all duration-500 ease-in-out active:scale-95 ${
+                  isLoading ? "opacity-60 cursor-not-allowed" : "hover:from-cyan-700 hover:to-[#0A7FD4]"
+                }`}
               >
-                Mulai Prediksi Sekarang
+                {isLoading ? "Memproses Data..." : "Mulai Prediksi Sekarang"}
               </button>
               <div className="flex justify-center">
                 <Link href="/beranda" className="flex items-center gap-2 text-cyan-600 hover:text-cyan-800 font-medium transition-colors duration-200 text-sm sm:text-base">
@@ -317,7 +396,7 @@ export default function FormPage() {
           </form>
 
           {/* Untuk memunculkan Popup */}
-          {showPopup && <PopupHasil onClose={() => setShowPopup(false)} />}
+          {showPopup && predictionResult && <PopupHasil onClose={() => setShowPopup(false)} result={predictionResult} />}
         </div>
       </div>
     </div>

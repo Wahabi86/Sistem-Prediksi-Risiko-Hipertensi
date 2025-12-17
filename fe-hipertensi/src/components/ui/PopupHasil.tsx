@@ -1,18 +1,39 @@
+// components/ui/PopupHasil.tsx
+
 "use client";
 import React from "react";
 import { X, Download } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-interface PopupHasilProps {
-  onClose: () => void;
+interface PredictionResult {
+  prediction: number;
+  status: string;
+  probability: string;
 }
 
-export default function PopupHasil({ onClose }: PopupHasilProps) {
+interface PopupHasilProps {
+  onClose: () => void;
+  result: PredictionResult;
+}
+
+export default function PopupHasil({ onClose, result }: PopupHasilProps) {
   const router = useRouter();
 
   const handlePdf = () => {
     alert("Berhasil Di Download");
   };
+
+  const isHypertension = result.prediction === 1;
+
+  // warna dan teks berdasarkan hasil prediksi
+  const resultTextColor = isHypertension ? "text-red-600" : "text-green-600";
+  const statusHighlight = isHypertension ? "Terdeteksi Hipertensi" : "Tidak Terdeteksi Hipertensi";
+
+  // Teks edukasi
+  const faktorRisikoText =
+    "Risiko hipertensi meningkat pada orang yang bertambah usia atau memiliki riwayat keluarga dengan tekanan darah tinggi. Kelebihan berat badan, pola makan tinggi garam/lemak, kurang olahraga, merokok, konsumsi alkohol berlebihan, stres, diabetes, serta kurang tidur juga berkontribusi terhadap hipertensi.";
+  const panduanKesehatanText =
+    "Untuk menjaga tekanan darah tetap normal, biasakan makan sehat dengan sedikit garam dan lemak. Lakukan aktivitas fisik teratur, kelola stres, tidur cukup, dan hindari merokok serta alkohol. Periksa tekanan darah secara berkala, terutama bila ada riwayat keluarga.";
 
   return (
     <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
@@ -27,14 +48,14 @@ export default function PopupHasil({ onClose }: PopupHasilProps) {
           {/* Judul */}
           <div className="text-center">
             <h2 className="text-base sm:text-lg md:text-xl font-semibold text-gray-800 leading-snug">
-              Hasil Prediksi : <span className="font-bold text-black">Positif Hipertensi</span>
+              Hasil Prediksi : <span className={`font-bold ${resultTextColor}`}>{statusHighlight}</span>
             </h2>
           </div>
 
           {/* Probabilitas */}
           <div className="flex justify-center">
             <p className="bg-gray-100 border border-gray-200 rounded-full px-4 py-2 text-xs sm:text-sm font-medium">
-              Probabilitas : <span className="font-bold">98%</span>
+              Probabilitas Risiko: <span className="font-bold">{result.probability}</span>
             </p>
           </div>
 
@@ -42,18 +63,12 @@ export default function PopupHasil({ onClose }: PopupHasilProps) {
           <div className="bg-gradient-to-r from-cyan-800 to-[#0872C2] text-white rounded-xl p-4 sm:p-5 space-y-4">
             <div>
               <h3 className="font-semibold text-sm sm:text-base mb-1">Faktor Risiko :</h3>
-              <p className="text-xs sm:text-sm leading-relaxed text-justify">
-                Risiko hipertensi meningkat pada orang yang bertambah usia atau memiliki riwayat keluarga dengan tekanan darah tinggi. Kelebihan berat badan, pola makan tinggi garam/lemak, kurang olahraga, merokok, konsumsi alkohol
-                berlebihan, stres, diabetes, serta kurang tidur juga berkontribusi terhadap hipertensi.
-              </p>
+              <p className="text-xs sm:text-sm leading-relaxed text-justify">{faktorRisikoText}</p>
             </div>
             <div className="border-t border-white/20"></div>
             <div>
               <h3 className="font-semibold text-sm sm:text-base mb-1">Panduan Kesehatan :</h3>
-              <p className="text-xs sm:text-sm leading-relaxed text-justify">
-                Untuk menjaga tekanan darah tetap normal, biasakan makan sehat dengan sedikit garam dan lemak. Lakukan aktivitas fisik teratur, kelola stres, tidur cukup, dan hindari merokok serta alkohol. Periksa tekanan darah secara
-                berkala, terutama bila ada riwayat keluarga.
-              </p>
+              <p className="text-xs sm:text-sm leading-relaxed text-justify">{panduanKesehatanText}</p>
             </div>
           </div>
 
