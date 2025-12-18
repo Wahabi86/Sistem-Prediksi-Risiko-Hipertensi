@@ -12,7 +12,7 @@ export default function Pertanyaan() {
 
   return (
     <div className="container mx-auto my-12">
-      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center">PERTANYAAN YANG SERING DIAJUKAN</h2>
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center">Pertanyaan Yang Sering Diajukan</h2>
 
       <div className="mx-auto max-w-5xl space-y-6">
         {dataPertanyaan.map((item, index) => (

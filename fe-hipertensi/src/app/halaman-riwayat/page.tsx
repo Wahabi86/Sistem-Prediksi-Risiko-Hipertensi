@@ -12,7 +12,7 @@ export default function RiwayatPage() {
     <>
       {/* Header */}
       <div className="container mx-auto px-4 my-8">
-        {datasRiwayat.length > 0 && <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-center lg:text-left">RIWAYAT PREDIKSI</h1>}
+        {datasRiwayat.length > 0 && <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-center lg:text-left">Riwayat Prediksi</h1>}
 
         {/* Main Content */}
         <div className="space-y-6">

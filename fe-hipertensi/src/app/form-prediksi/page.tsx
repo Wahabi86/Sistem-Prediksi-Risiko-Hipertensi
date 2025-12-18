@@ -193,7 +193,7 @@ export default function FormPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 {/* Section Tingkat Stres */}
                 <div>
-                  <label className="block text-sm font-semibold mb-4">Tingkat Stres</label>
+                  <label className="block text-sm text-gray-700 font-semibold mb-4">Tingkat Stres</label>
                   {/* Slider */}
                   <input
                     type="range"
@@ -261,7 +261,7 @@ export default function FormPage() {
 
                 {/* Section Status Merokok */}
                 <div>
-                  <label className="block text-sm sm:text-base font-semibold text-gray-800 mb-3">Status Merokok</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-3">Status Merokok</label>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                     {["Tidak merokok", "Perokok aktif"].map((option) => (

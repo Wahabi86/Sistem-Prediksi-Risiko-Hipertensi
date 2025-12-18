@@ -15,7 +15,7 @@ export default function TentangKami() {
 
         {/* Section Kanan */}
         <div className="space-y-4 sm:space-y-5 md:space-y-6 order-2 lg:order-2">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center lg:text-left">TENTANG KAMI</h2>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center lg:text-left">Tentang Kami</h2>
           <div className="space-y-3 sm:space-y-4 md:space-y-5 text-base sm:text-lg md:text-xl leading-relaxed text-justify max-w-xl mx-auto lg:mx-0">
             <p>
               <span className="font-bold">MyTenxi</span> adalah platform prediksi hipertensi berbasis machine learning yang membantu mengenali risiko tekanan darah tinggi lebih awal.

@@ -6,7 +6,7 @@ import Footer from "./Footer";
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   // halaman yang tidak dimunculkan footer
-  const hideFooterRoutes = ["/auth/login", "/auth/register"];
+  const hideFooterRoutes = ["/", "/auth/login", "/auth/register"];
   const hideFooterRule = hideFooterRoutes.includes(pathname);
 
   return (

@@ -22,7 +22,7 @@ export default function VideoEdukasi({ videoId }: VideoEdukasiProps) {
     <div className="flex justify-center items-center px-4 mt-4 sm:mt-8">
       <div className="container mx-auto px-4">
         {/* Judul video */}
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-center lg:text-left">EDUKASI HIPERTENSI</h1>
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-center lg:text-left">Edukasi Hipertensi</h1>
 
         {/* Tampilan Mobile */}
         <div className="block sm:hidden rounded-2xl overflow-hidden shadow-2xl aspect-video">

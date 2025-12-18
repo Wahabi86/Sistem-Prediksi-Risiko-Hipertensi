@@ -20,7 +20,7 @@ export default function EdukasiPage() {
 
       {/* Section Referensi */}
       <div className="container mx-auto my-12 px-4">
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-center lg:text-left">REFERENSI & BACAAN</h1>
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 text-center lg:text-left">Referensi & Bacaan</h1>
 
         <div className="space-y-8">
           {dataPendukung.map((item, index) => (

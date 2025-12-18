@@ -5,7 +5,7 @@ import { caraPenggunaan } from "@/data/datas";
 export default function Tutorial() {
   return (
     <div className="container mx-auto mb-24 mt-24">
-      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center">CARA MENGGUNAKAN</h2>
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center">Cara Menggunakan</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-8">
         {/* Tutorial 1 & 2 */}
