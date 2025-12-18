@@ -61,7 +61,7 @@ export default function PopupHasil({ onClose, result }: PopupHasilProps) {
               <h3 className="font-semibold text-sm sm:text-base mb-1">Panduan Kesehatan :</h3>
               <div className="space-y-2">
                 {result.health_guidelines.map((text, index) => (
-                  <div key={index} className="text-xs sm:text-sm leading-relaxed">
+                  <div key={index} className="text-xs sm:text-sm leading-relaxed text-justify">
                     {index === 0 ? (
                       <p className="mb-2 font-medium">{text}</p>
                     ) : (
