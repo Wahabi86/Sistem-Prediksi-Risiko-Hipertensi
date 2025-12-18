@@ -1,5 +1,3 @@
-// components/ui/PopupHasil.tsx
-
 "use client";
 import React from "react";
 import { X, Download } from "lucide-react";
