@@ -5,9 +5,10 @@ import PopupHasil from "@/components/ui/PopupHasil";
 import Link from "next/link";
 
 interface PredictionResult {
-  prediction: number;
   status: string;
   probability: string;
+  factor_supporting: string;
+  health_guidelines: string[];
 }
 
 export default function FormPage() {
@@ -172,7 +173,7 @@ export default function FormPage() {
                     className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900 text-sm"
                   >
                     <option value="">Pilih Usia</option>
-                    {["< 20 tahun", "20–29 tahun", "30–39 tahun", "40–49 tahun", "50–59 tahun", "≥ 60 tahun"].map((option) => (
+                    {["< 20 tahun", "20-29 tahun", "30-39 tahun", "40-49 tahun", "50-59 tahun", "≥ 60 tahun"].map((option) => (
                       <option key={option} value={option}>
                         {option}
                       </option>
@@ -231,7 +232,7 @@ export default function FormPage() {
                     <option value="" disabled>
                       Pilih Waktu Tidur
                     </option>
-                    {["< 5 jam", "5–6 jam", "7–8 jam", "> 8 jam"].map((option) => (
+                    {["< 5 jam", "5-6 jam", "7-8 jam", "> 8 jam"].map((option) => (
                       <option key={option} value={option}>
                         {option}
                       </option>
@@ -250,7 +251,7 @@ export default function FormPage() {
                     <option value="" disabled>
                       Pilih Tingkat Aktivitas Olahraga
                     </option>
-                    {["Tidak pernah", "1–2 kali per minggu", "3–4 kali per minggu", "≥ 5 kali per minggu"].map((option) => (
+                    {["Tidak pernah", "1-2 kali per minggu", "3-4 kali per minggu", "≥ 5 kali per minggu"].map((option) => (
                       <option key={option} value={option}>
                         {option}
                       </option>
@@ -300,7 +301,7 @@ export default function FormPage() {
                     <option value="" disabled>
                       Pilih Riwayat Tekanan Darah
                     </option>
-                    {["Normal (<120 / <80 mmHg)", "Pra-hipertensi (120–139 / 80–89 mmHg)", "Hipertensi (140–159 / 90–99 mmHg)"].map((option) => (
+                    {["Normal (<120 / <80 mmHg)", "Pra-hipertensi (120-139 / 80-89 mmHg)", "Hipertensi (140-159 / 90-99 mmHg)"].map((option) => (
                       <option key={option} value={option}>
                         {option}
                       </option>

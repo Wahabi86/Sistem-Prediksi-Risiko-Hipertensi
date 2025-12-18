@@ -2,22 +2,22 @@ def map_form_input(data):
 
     AGE_MAPPING = {
         "< 20 tahun": 18,        
-        "20–29 tahun": 25,
-        "30–39 tahun": 35,
-        "40–49 tahun": 45,
-        "50–59 tahun": 55,
+        "20-29 tahun": 25,
+        "30-39 tahun": 35,
+        "40-49 tahun": 45,
+        "50-59 tahun": 55,
         "≥ 60 tahun": 65,
     }
     SLEEP_MAPPING = {
         "< 5 jam": 4.5,          
-        "5–6 jam": 5.5,
-        "7–8 jam": 7.5,
+        "5-6 jam": 5.5,
+        "7-8 jam": 7.5,
         "> 8 jam": 8.5,
     }
     BP_HISTORY_MAPPING = {
         "Normal (<120 / <80 mmHg)": "Normal",
-        "Pra-hipertensi (120–139 / 80–89 mmHg)": "Prehypertension",
-        "Hipertensi (140–159 / 90–99 mmHg)": "Hypertension",
+        "Pra-hipertensi (120-139 / 80-89 mmHg)": "Prehypertension",
+        "Hipertensi (140-159 / 90-99 mmHg)": "Hypertension",
     }
     FAMILY_HISTORY_MAPPING = {
         "Tidak ada": "No",
@@ -25,8 +25,8 @@ def map_form_input(data):
     }
     EXERCISE_LEVEL_MAPPING = {
         "Tidak pernah": "Low",
-        "1–2 kali per minggu": "Low", 
-        "3–4 kali per minggu": "Moderate",
+        "1-2 kali per minggu": "Low", 
+        "3-4 kali per minggu": "Moderate",
         "≥ 5 kali per minggu": "High",
     }
     SMOKING_MAPPING = {

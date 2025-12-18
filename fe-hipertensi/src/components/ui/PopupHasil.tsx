@@ -6,9 +6,10 @@ import { X, Download } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 interface PredictionResult {
-  prediction: number;
   status: string;
   probability: string;
+  factor_supporting: string;
+  health_guidelines: string[];
 }
 
 interface PopupHasilProps {
@@ -23,17 +24,9 @@ export default function PopupHasil({ onClose, result }: PopupHasilProps) {
     alert("Berhasil Di Download");
   };
 
-  const isHypertension = result.prediction === 1;
-
   // warna dan teks berdasarkan hasil prediksi
+  const isHypertension = result.status === "Terdeteksi Hipertensi";
   const resultTextColor = isHypertension ? "text-red-600" : "text-green-600";
-  const statusHighlight = isHypertension ? "Terdeteksi Hipertensi" : "Tidak Terdeteksi Hipertensi";
-
-  // Teks edukasi
-  const faktorRisikoText =
-    "Risiko hipertensi meningkat pada orang yang bertambah usia atau memiliki riwayat keluarga dengan tekanan darah tinggi. Kelebihan berat badan, pola makan tinggi garam/lemak, kurang olahraga, merokok, konsumsi alkohol berlebihan, stres, diabetes, serta kurang tidur juga berkontribusi terhadap hipertensi.";
-  const panduanKesehatanText =
-    "Untuk menjaga tekanan darah tetap normal, biasakan makan sehat dengan sedikit garam dan lemak. Lakukan aktivitas fisik teratur, kelola stres, tidur cukup, dan hindari merokok serta alkohol. Periksa tekanan darah secara berkala, terutama bila ada riwayat keluarga.";
 
   return (
     <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
@@ -48,7 +41,7 @@ export default function PopupHasil({ onClose, result }: PopupHasilProps) {
           {/* Judul */}
           <div className="text-center">
             <h2 className="text-base sm:text-lg md:text-xl font-semibold text-gray-800 leading-snug">
-              Hasil Prediksi : <span className={`font-bold ${resultTextColor}`}>{statusHighlight}</span>
+              Hasil Prediksi : <span className={`font-bold ${resultTextColor}`}>{result.status}</span>
             </h2>
           </div>
 
@@ -63,12 +56,25 @@ export default function PopupHasil({ onClose, result }: PopupHasilProps) {
           <div className="bg-gradient-to-r from-cyan-800 to-[#0872C2] text-white rounded-xl p-4 sm:p-5 space-y-4">
             <div>
               <h3 className="font-semibold text-sm sm:text-base mb-1">Faktor Risiko :</h3>
-              <p className="text-xs sm:text-sm leading-relaxed text-justify">{faktorRisikoText}</p>
+              <p className="text-xs sm:text-sm leading-relaxed text-justify">{result.factor_supporting}</p>
             </div>
             <div className="border-t border-white/20"></div>
             <div>
               <h3 className="font-semibold text-sm sm:text-base mb-1">Panduan Kesehatan :</h3>
-              <p className="text-xs sm:text-sm leading-relaxed text-justify">{panduanKesehatanText}</p>
+              <div className="space-y-2">
+                {result.health_guidelines.map((text, index) => (
+                  <div key={index} className="text-xs sm:text-sm leading-relaxed">
+                    {index === 0 ? (
+                      <p className="mb-2 font-medium">{text}</p>
+                    ) : (
+                      <div className="flex gap-2 pl-2">
+                        <span className="text-cyan-300 flex-shrink-0">•</span>
+                        <span>{text}</span>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
