@@ -2,8 +2,21 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function WelcomePage() {
+  // State untuk menentukan tujuan tombol (Default ke login)
+  const [destination, setDestination] = useState("/auth/login");
+
+  useEffect(() => {
+    // Cek apakah user sudah login (ada token)
+    const token = localStorage.getItem("token");
+    if (token) {
+      // Jika sudah login, tombol akan mengarah langsung ke Beranda
+      setDestination("/beranda");
+    }
+  }, []);
+
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-cyan-800 to-[#0872C2] px-4 sm:px-6 lg:px-8 py-8 sm:py-12 text-white relative overflow-hidden">
       {/* Container utama */}
@@ -32,10 +45,10 @@ export default function WelcomePage() {
           </p>
         </div>
 
-        {/* CTA  */}
+        {/* CTA */}
         <div className="pt-2 sm:pt-4">
           <Link
-            href="/auth/login"
+            href={destination} // Menggunakan variable destination yang dinamis
             className="inline-flex items-center justify-center px-12 sm:px-16 py-3.5 border-2 border-white/90 rounded-2xl text-base sm:text-lg font-semibold tracking-wide hover:bg-white hover:text-cyan-800 transition-all duration-300 shadow-lg active:scale-95"
           >
             <span className="relative">Lanjutkan</span>

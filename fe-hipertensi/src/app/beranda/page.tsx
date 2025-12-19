@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import ArrowIcon from "@/components/ui/Icons";
 import ButtonPrediksi from "@/components/ui/ButtonPrediksi";
@@ -12,10 +12,28 @@ import { slides } from "@/data/datas";
 export default function Home() {
   const [current, setCurrent] = useState(0);
   const router = useRouter();
+  const [isAuthorized, setIsAuthorized] = useState(false); // State untuk izin akses
+
+  // LOGIKA PENGAMANAN HALAMAN
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // Jika token tidak ada, tendang ke login
+      router.push("/auth/login");
+    } else {
+      // Jika ada, izinkan konten tampil
+      setIsAuthorized(true);
+    }
+  }, [router]);
 
   const nextSlide = () => {
     setCurrent((prev) => (prev + 1) % slides.length);
   };
+
+  // Jangan tampilkan apapun sebelum status login terkonfirmasi (Mencegah konten terlihat sekilas)
+  if (!isAuthorized) {
+    return null; 
+  }
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-4 xl:px-4">
