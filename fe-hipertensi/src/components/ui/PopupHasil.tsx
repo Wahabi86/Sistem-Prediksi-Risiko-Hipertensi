@@ -2,6 +2,8 @@
 import React from "react";
 import { X, Download } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import HasilPdf from "./HasilPdf";
 
 interface PredictionResult {
   status: string;
@@ -10,17 +12,28 @@ interface PredictionResult {
   health_guidelines: string[];
 }
 
+interface FormData {
+  tinggiBadan: string;
+  beratBadan: string;
+  tingkatStres: string;
+  riwayatTekananDarah: string;
+  waktuTidur: string;
+  riwayatKeluarga: string;
+  olahraga: string;
+  statusMerokok: string;
+  gender: string;
+  usia: string;
+}
+
 interface PopupHasilProps {
   onClose: () => void;
   result: PredictionResult;
+  inputData: FormData; // Menangkap data form
+  bmiValue: string; // Menangkap nilai BMI
 }
 
-export default function PopupHasil({ onClose, result }: PopupHasilProps) {
+export default function PopupHasil({ onClose, result, inputData, bmiValue }: PopupHasilProps) {
   const router = useRouter();
-
-  const handlePdf = () => {
-    alert("Berhasil Di Download");
-  };
 
   // warna dan teks berdasarkan hasil prediksi
   const isHypertension = result.status === "Terdeteksi Hipertensi";
@@ -78,13 +91,15 @@ export default function PopupHasil({ onClose, result }: PopupHasilProps) {
 
           {/* Tombol Unduh & Edukasi */}
           <div className="text-center space-y-3">
-            <button
-              onClick={handlePdf}
-              className="
-                flex items-center justify-center mx-auto border border-gray-300 rounded-full px-5 py-2.5 text-xs sm:text-sm  hover:bg-gray-100 transition"
-            >
-              <Download size={16} className="mr-2" /> Unduh PDF
-            </button>
+            {/* Komponen Download PDF Otomatis */}
+            <PDFDownloadLink document={<HasilPdf data={inputData} result={result} bmi={bmiValue} />} fileName={`Hasil_MyTenxi_${new Date().getTime()}.pdf`}>
+              {({ loading }) => (
+                <button disabled={loading} className="flex items-center justify-center mx-auto border border-gray-300 rounded-full px-5 py-2.5 text-xs sm:text-sm hover:bg-gray-100 transition disabled:opacity-50">
+                  <Download size={16} className="mr-2" />
+                  {loading ? "Menyiapkan PDF..." : "Unduh PDF"}
+                </button>
+              )}
+            </PDFDownloadLink>
 
             <button
               onClick={() => {

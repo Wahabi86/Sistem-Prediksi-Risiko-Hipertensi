@@ -397,7 +397,7 @@ export default function FormPage() {
           </form>
 
           {/* Untuk memunculkan Popup */}
-          {showPopup && predictionResult && <PopupHasil onClose={() => setShowPopup(false)} result={predictionResult} />}
+          {showPopup && predictionResult && <PopupHasil onClose={() => setShowPopup(false)} result={predictionResult} inputData={formData} bmiValue={bmi} />}
         </div>
       </div>
     </div>
