@@ -35,9 +35,9 @@ def register():
 
         # 3. Proses Simpan
         new_user = User(
-            name=data.get('name'),
+            nama_lengkap=data.get('name'),
             email=data.get('email'),
-            gender=data.get('gender')
+            jenis_kelamin=data.get('gender')
         )
         new_user.set_password(data['password'])
 
@@ -60,19 +60,20 @@ def login():
 
     if user and user.check_password(data.get('password')):
         # Buat token JWT
-        access_token = create_access_token(identity=str(user.id))
+        access_token = create_access_token(identity=str(user.id_users))
         return jsonify({
             "msg": "Login berhasil",
             "access_token": access_token,
             "user": {
-                "name": user.name,
-                "email": user.email
+                "name": user.nama_lengkap,
+                "email": user.email,
+                "gender": user.jenis_kelamin
             }
         }), 200
     
     return jsonify({"msg": "Email atau password salah"}), 401
 
-# --- GET USER PROFILE (GET) ---
+# GET USER PROFILE
 @auth_routes.route('/me', methods=['GET'])
 @jwt_required()
 def get_profile():
@@ -84,10 +85,10 @@ def get_profile():
         return jsonify({"msg": "User tidak ditemukan"}), 404
 
     return jsonify({
-        "id": user.id,
-        "name": user.name,
+        "id": user.id_users,
+        "name": user.nama_lengkap,
         "email": user.email,
-        "gender": user.gender
+        "gender": user.jenis_kelamin
     }), 200
 
 # --- UPDATE PROFILE (PUT) ---
@@ -104,9 +105,9 @@ def update_profile():
 
     # Update field yang dikirim saja
     if 'name' in data:
-        user.name = data['name']
+        user.nama_lengkap = data['name']
     if 'gender' in data:
-        user.gender = data['gender']
+        user.jenis_kelamin = data['gender']
     
     # Khusus update password (harus di-hash ulang)
     if 'password' in data and data['password']:
@@ -117,9 +118,9 @@ def update_profile():
         return jsonify({
             "msg": "Profil berhasil diperbarui",
             "user": {
-                "name": user.name,
+                "name": user.nama_lengkap,
                 "email": user.email,
-                "gender": user.gender
+                "gender": user.jenis_kelamin
             }
         }), 200
     except Exception as e:
