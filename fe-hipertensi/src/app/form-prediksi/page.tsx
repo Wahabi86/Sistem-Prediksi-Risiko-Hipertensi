@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { User, Brain, Stethoscope, Dumbbell, MoveLeft } from "lucide-react";
 import PopupHasil from "@/components/ui/PopupHasil";
 import Link from "next/link";
@@ -15,7 +15,7 @@ export default function FormPage() {
   const [formData, setFormData] = useState({
     gender: "",
     usia: "",
-    tingkatStres: "",
+    tingkatStres: "0",
     waktuTidur: "",
     riwayatTekananDarah: "",
     riwayatKeluarga: "",
@@ -27,6 +27,23 @@ export default function FormPage() {
   });
 
   const [bmi, setBmi] = useState("");
+
+  const [isGenderLocked, setIsGenderLocked] = useState(false);
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+
+      if (user?.gender) {
+        setFormData((prev) => ({
+          ...prev,
+          gender: user.gender,
+        }));
+
+        setIsGenderLocked(true);
+      }
+    }
+  }, []);
 
   const [predictionResult, setPredictionResult] = useState<PredictionResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -65,7 +82,7 @@ export default function FormPage() {
     const requiredFields: (keyof typeof formData)[] = ["usia", "tingkatStres", "waktuTidur", "riwayatTekananDarah", "riwayatKeluarga", "olahraga", "statusMerokok"];
 
     for (const field of requiredFields) {
-      if (!formData[field]) {
+      if (formData[field] === "") {
         alert("Harap lengkapi semua data");
         setIsLoading(false);
         return;
@@ -78,19 +95,12 @@ export default function FormPage() {
       return;
     }
 
-    const payload = {
-      usia: formData.usia,
-      tingkatStres: formData.tingkatStres,
-      waktuTidur: formData.waktuTidur,
-      riwayatTekananDarah: formData.riwayatTekananDarah,
-      riwayatKeluarga: formData.riwayatKeluarga,
-      olahraga: formData.olahraga,
-      statusMerokok: formData.statusMerokok,
-      bmi: bmi,
-    };
-
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      const payload = {
+        ...formData, // Ini mengirim usia, tingkatStres, waktuTidur, dll.
+        bmi: bmi, // Menambahkan BMI hasil kalkulasi ke payload
+      };
       const response = await fetch(`${apiUrl}/api/prediksi`, {
         method: "POST",
         headers: {
@@ -150,17 +160,29 @@ export default function FormPage() {
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2 sm:mb-3">Jenis Kelamin</label>
                   <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                    {["Laki-laki", "Perempuan"].map((option) => (
-                      <button
-                        key={option}
-                        type="button"
-                        onClick={() => handleInputChange("gender", option)}
-                        className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border text-xs sm:text-sm font-medium transition-all duration-200
-                          ${formData.gender === option ? "bg-cyan-600 text-white border-cyan-600 shadow-md" : "bg-white text-gray-700 border-gray-300 hover:border-cyan-400"}`}
-                      >
-                        {option}
-                      </button>
-                    ))}
+                    {["Laki-laki", "Perempuan"].map((option) => {
+                      const isSelected = formData.gender === option;
+
+                      return (
+                        <button
+                          key={option}
+                          type="button"
+                          disabled={isGenderLocked}
+                          onClick={() => {
+                            if (!isGenderLocked) {
+                              handleInputChange("gender", option);
+                            }
+                          }}
+                          className={`w-full px-4 py-3 rounded-lg border text-sm font-medium transition-all
+    ${isSelected ? "bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed" : "bg-white text-gray-400 border-gray-300"}
+    ${isGenderLocked ? "cursor-not-allowed" : ""}
+    focus:outline-none
+  `}
+                        >
+                          {option}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -200,7 +222,7 @@ export default function FormPage() {
                     min={0}
                     max={10}
                     step={1}
-                    value={formData.tingkatStres || 0}
+                    value={formData.tingkatStres}
                     onChange={(e) => handleInputChange("tingkatStres", e.target.value)}
                     className="stress-slider w-full"
                     style={{

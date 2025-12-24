@@ -109,8 +109,7 @@ def predict_hypertension(data):
 
     guidelines = health_guidelines(data, int(prediction))
 
-    return {
-        # "prediction": int(prediction), 
+    return { 
         "status": status,      
         "probability": f"{round(float(probability) * 100, 1)}%",
         "factor_supporting": factor,
