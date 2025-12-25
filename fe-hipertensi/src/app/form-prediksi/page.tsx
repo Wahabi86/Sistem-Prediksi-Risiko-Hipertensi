@@ -97,9 +97,12 @@ export default function FormPage() {
 
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      const storedUser = localStorage.getItem("user");
+      const user = storedUser ? JSON.parse(storedUser) : null;
       const payload = {
         ...formData, // Ini mengirim usia, tingkatStres, waktuTidur, dll.
-        bmi: bmi, // Menambahkan BMI hasil kalkulasi ke payload
+        bmi: parseFloat(bmi), // Menambahkan BMI hasil kalkulasi ke payload
+        user_id: user?.id_users,
       };
       const response = await fetch(`${apiUrl}/api/prediksi`, {
         method: "POST",
@@ -173,11 +176,9 @@ export default function FormPage() {
                               handleInputChange("gender", option);
                             }
                           }}
-                          className={`w-full px-4 py-3 rounded-lg border text-sm font-medium transition-all
-    ${isSelected ? "bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed" : "bg-white text-gray-400 border-gray-300"}
-    ${isGenderLocked ? "cursor-not-allowed" : ""}
-    focus:outline-none
-  `}
+                          className={`w-full px-4 py-3 rounded-lg border text-sm font-medium transition-all ${isSelected ? "bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed" : "bg-white text-gray-400 border-gray-300"} ${
+                            isGenderLocked ? "cursor-not-allowed" : ""
+                          } focus:outline-none`}
                         >
                           {option}
                         </button>
@@ -419,7 +420,7 @@ export default function FormPage() {
           </form>
 
           {/* Untuk memunculkan Popup */}
-          {showPopup && predictionResult && <PopupHasil onClose={() => setShowPopup(false)} result={predictionResult} inputData={formData} bmiValue={bmi} />}
+          {showPopup && predictionResult && <PopupHasil onClose={() => setShowPopup(false)} result={predictionResult} inputData={formData} bmiValue={parseFloat(bmi)} />}
         </div>
       </div>
     </div>

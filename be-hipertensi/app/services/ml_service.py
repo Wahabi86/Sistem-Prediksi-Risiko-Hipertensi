@@ -114,7 +114,6 @@ def predict_hypertension(data):
         "probability": f"{round(float(probability) * 100, 1)}%",
         "factor_supporting": factor,
         "health_guidelines": guidelines
-
     }
 
 def health_guidelines(data, prediction):

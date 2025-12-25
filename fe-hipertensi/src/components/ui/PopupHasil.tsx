@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import { X, Download } from "lucide-react";
+import { useState, useEffect } from "react";
+import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { PDFDownloadLink } from "@react-pdf/renderer";
-import HasilPdf from "./HasilPdf";
+import DownloadButton from "./ButtonDownload";
 
 interface PredictionResult {
   status: string;
@@ -29,11 +29,22 @@ interface PopupHasilProps {
   onClose: () => void;
   result: PredictionResult;
   inputData: FormData; // Menangkap data form
-  bmiValue: string; // Menangkap nilai BMI
+  bmiValue: number; // Menangkap nilai BMI
 }
 
 export default function PopupHasil({ onClose, result, inputData, bmiValue }: PopupHasilProps) {
   const router = useRouter();
+
+  // 1. Tambahkan state untuk menyimpan data user yang login
+  const [userLogin, setUserLogin] = useState<{ nama_lengkap: string; jenis_kelamin: string } | null>(null);
+
+  // 2. Ambil data user dari localStorage saat popup muncul
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUserLogin(JSON.parse(storedUser));
+    }
+  }, []);
 
   // warna dan teks berdasarkan hasil prediksi
   const isHypertension = result.status === "Terdeteksi Hipertensi";
@@ -90,16 +101,36 @@ export default function PopupHasil({ onClose, result, inputData, bmiValue }: Pop
           </div>
 
           {/* Tombol Unduh & Edukasi */}
-          <div className="text-center space-y-3">
+          <div className="flex flex-col items-center gap-3">
             {/* Komponen Download PDF Otomatis */}
-            <PDFDownloadLink document={<HasilPdf data={inputData} result={result} bmi={bmiValue} />} fileName={`Hasil_MyTenxi_${new Date().getTime()}.pdf`}>
-              {({ loading }) => (
-                <button disabled={loading} className="flex items-center justify-center mx-auto border border-gray-300 rounded-full px-5 py-2.5 text-xs sm:text-sm hover:bg-gray-100 transition disabled:opacity-50">
-                  <Download size={16} className="mr-2" />
-                  {loading ? "Menyiapkan PDF..." : "Unduh PDF"}
-                </button>
-              )}
-            </PDFDownloadLink>
+            <DownloadButton
+              riwayat={{
+                id_riwayat: "Baru", 
+                tanggal: new Date()
+                  .toLocaleString("en-GB", {
+                    timeZone: "Asia/Makassar",
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: false,
+                  })
+                  .replace(" at ", ", "),
+                usia: inputData.usia,
+                tinggiBadan: inputData.tinggiBadan,
+                beratBadan: inputData.beratBadan,
+                bmi: bmiValue,
+                tingkatStres: inputData.tingkatStres,
+                statusMerokok: inputData.statusMerokok,
+                waktuTidur: inputData.waktuTidur,
+                hasilPrediksi: result.status,
+                probabilitas: result.probability,
+                faktorPendukung: result.factor_supporting,
+                panduanKesehatan: result.health_guidelines,
+              }}
+              user={userLogin}
+            />
 
             <button
               onClick={() => {

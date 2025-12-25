@@ -1,4 +1,3 @@
-# be-hipertensi/app/routes/auth_routes.py
 from flask import Blueprint, request, jsonify
 from app.models.user import User
 from app.extensions import db
@@ -65,6 +64,7 @@ def login():
             "msg": "Login berhasil",
             "access_token": access_token,
             "user": {
+                "id_users": user.id_users,
                 "name": user.nama_lengkap,
                 "email": user.email,
                 "gender": user.jenis_kelamin
@@ -91,7 +91,7 @@ def get_profile():
         "gender": user.jenis_kelamin
     }), 200
 
-# --- UPDATE PROFILE (PUT) ---
+# UPDATE PROFILE (PUT)
 @auth_routes.route('/me', methods=['PUT'])
 @jwt_required()
 def update_profile():
@@ -127,7 +127,7 @@ def update_profile():
         db.session.rollback()
         return jsonify({"msg": "Gagal update profil"}), 500
 
-# --- DELETE ACCOUNT (DELETE) ---
+# DELETE ACCOUNT (DELETE)
 @auth_routes.route('/me', methods=['DELETE'])
 @jwt_required()
 def delete_account():
