@@ -98,7 +98,7 @@ export default function Navbar() {
 
             {/* User Menu */}
             <div className="relative">
-              <button onClick={() => setUserMenuOpen(!userMenuOpen)} className="text-black bg-gray-200 w-11 h-11 rounded-full flex justify-center items-center font-bold hover:bg-gray-300 transition-colors text-xl">
+              <button onClick={() => setUserMenuOpen(!userMenuOpen)} className="text-black bg-gray-200 w-11 h-11 rounded-full flex justify-center items-center font-bold hover:bg-gray-300 transition-colors text-xl cursor-pointer">
                 {userInitial} {/* Tampilkan Inisial Nama User */}
               </button>
 
@@ -110,7 +110,7 @@ export default function Navbar() {
                   </Link>
 
                   {/* Tombol Logout dengan Handler Baru */}
-                  <button onClick={handleLogout} className="flex items-center w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100 transition-colors font-semibold">
+                  <button onClick={handleLogout} className="flex items-center w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100 transition-colors font-semibold cursor-pointer">
                     <LogoutIcon className="w-5 h-5 mr-2" />
                     Keluar
                   </button>

@@ -37,7 +37,7 @@ export default function PdfTemplate({ riwayat, user, id }: PdfTemplateProps) {
   return (
     <div id={id} style={{ padding: "40px", backgroundColor: "white", width: "750px", color: "#333" }}>
       {/* HEADER */}
-      <div style={{ borderBottom: "2px solid #0872C2", paddingBottom: "10px", marginBottom: "20px" }}>
+      <div style={{ borderBottom: "2px solid #0872C2", paddingBottom: "10px" }}>
         <h1 style={{ color: "#0872C2", fontSize: "24px", margin: 0 }}>LAPORAN HASIL PREDIKSI RISIKO HIPERTENSI</h1>
         <p style={{ margin: 0, fontSize: "12px" }}>Waktu Prediksi: {riwayat.tanggal}</p>
       </div>

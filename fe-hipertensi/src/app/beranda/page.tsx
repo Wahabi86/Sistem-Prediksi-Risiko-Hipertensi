@@ -32,7 +32,7 @@ export default function Home() {
 
   // Jangan tampilkan apapun sebelum status login terkonfirmasi (Mencegah konten terlihat sekilas)
   if (!isAuthorized) {
-    return null; 
+    return null;
   }
 
   return (
@@ -52,7 +52,7 @@ export default function Home() {
             onClick={() => router.push(slides[current].buttonLink)}
             className="bg-gradient-to-r from-cyan-800 to-[#0872C2] hover:from-cyan-700 hover:to-[#0A7FD4]
                        text-white px-4 py-2 sm:px-6 sm:py-3 md:px-7 md:py-3.5 lg:px-8 lg:py-4 rounded-lg sm:rounded-xl
-                       font-bold shadow-lg transition-all duration-500 active:scale-95 text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl"
+                       font-bold shadow-lg transition-all duration-500 active:scale-95 text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl cursor-pointer"
           >
             {slides[current].buttonText}
           </button>
@@ -61,7 +61,7 @@ export default function Home() {
         <button
           onClick={nextSlide}
           aria-label="Next slide"
-          className="absolute right-2 sm:right-3 md:right-4 lg:right-5 top-1/2 -translate-y-1/2 w-6 sm:w-9 md:w-11 lg:w-12 h-6 sm:h-9 md:h-11 lg:h-12 bg-white/90 hover:bg-white text-gray-700 hover:text-gray-900 rounded-full shadow-lg flex items-center justify-center group transition-all"
+          className="absolute right-2 sm:right-3 md:right-4 lg:right-5 top-1/2 -translate-y-1/2 w-6 sm:w-9 md:w-11 lg:w-12 h-6 sm:h-9 md:h-11 lg:h-12 bg-white/90 hover:bg-white text-gray-700 hover:text-gray-900 rounded-full shadow-lg flex items-center justify-center group transition-all cursor-pointer"
         >
           <ArrowIcon className="w-2.5 sm:w-4 md:w-5 h-2.5 sm:h-4 md:h-5 group-hover:scale-110 transition-transform" />
         </button>

@@ -18,7 +18,7 @@ export default function Pertanyaan() {
         {dataPertanyaan.map((item, index) => (
           <div key={index} className="border border-gray-300 rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
             {/* Section Pertanyaan */}
-            <button onClick={() => logicQuestion(index)} className="w-full flex items-center justify-between p-4 sm:p-6 text-left hover:bg-gray-50 transition-colors duration-200">
+            <button onClick={() => logicQuestion(index)} className="w-full flex items-center justify-between p-4 sm:p-6 text-left hover:bg-gray-50 transition-colors duration-200 cursor-pointer">
               <span className="text-lg font-medium">{item.question}</span>
               {openQuestion === index ? <ChevronUp className="w-6 h-6  flex-shrink-0 ml-4" /> : <ChevronDown className="w-6 h-6  flex-shrink-0 ml-4" />}
             </button>

@@ -194,9 +194,11 @@ export default function FormPage() {
                   <select
                     value={formData.usia}
                     onChange={(e) => handleInputChange("usia", e.target.value)}
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900 text-sm"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900 text-sm cursor-pointer"
                   >
-                    <option value="">Pilih Usia</option>
+                    <option value="" disabled>
+                      Pilih Usia
+                    </option>
                     {["< 20 tahun", "20-29 tahun", "30-39 tahun", "40-49 tahun", "50-59 tahun", "≥ 60 tahun"].map((option) => (
                       <option key={option} value={option}>
                         {option}
@@ -251,7 +253,7 @@ export default function FormPage() {
                   <select
                     value={formData.waktuTidur}
                     onChange={(e) => handleInputChange("waktuTidur", e.target.value)}
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900 text-sm"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900 text-sm cursor-pointer"
                   >
                     <option value="" disabled>
                       Pilih Waktu Tidur
@@ -270,7 +272,7 @@ export default function FormPage() {
                   <select
                     value={formData.olahraga}
                     onChange={(e) => handleInputChange("olahraga", e.target.value)}
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900 text-sm"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900 text-sm cursor-pointer"
                   >
                     <option value="" disabled>
                       Pilih Tingkat Aktivitas Olahraga
@@ -294,7 +296,7 @@ export default function FormPage() {
                         type="button"
                         onClick={() => handleInputChange("statusMerokok", option)}
                         className={`w-full px-5 py-3 rounded-xl font-medium text-sm transition-all duration-200 border ${
-                          formData.statusMerokok === option ? "bg-cyan-600 text-white border-cyan-600 shadow" : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50 hover:border-cyan-400"
+                          formData.statusMerokok === option ? "bg-cyan-600 text-white border-cyan-600 shadow cursor-pointer" : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50 hover:border-cyan-400 cursor-pointer"
                         }`}
                       >
                         {option}
@@ -320,7 +322,7 @@ export default function FormPage() {
                   <select
                     value={formData.riwayatTekananDarah}
                     onChange={(e) => handleInputChange("riwayatTekananDarah", e.target.value)}
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900 text-sm"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900 text-sm cursor-pointer"
                   >
                     <option value="" disabled>
                       Pilih Riwayat Tekanan Darah
@@ -339,7 +341,7 @@ export default function FormPage() {
                   <select
                     value={formData.riwayatKeluarga}
                     onChange={(e) => handleInputChange("riwayatKeluarga", e.target.value)}
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900 text-sm"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white text-gray-900 text-sm cursor-pointer"
                   >
                     <option value="" disabled>
                       Pilih Riwayat Keluarga
@@ -405,7 +407,7 @@ export default function FormPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className={`w-full sm:w-auto bg-gradient-to-r from-cyan-800 to-[#0872C2] text-white px-8 sm:px-12 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg shadow-lg hover:shadow-xl transform transition-all duration-500 ease-in-out active:scale-95 ${
+                className={`w-full sm:w-auto bg-gradient-to-r from-cyan-800 to-[#0872C2] text-white px-8 sm:px-12 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg shadow-lg hover:shadow-xl transform transition-all duration-500 ease-in-out active:scale-95 cursor-pointer ${
                   isLoading ? "opacity-60 cursor-not-allowed" : "hover:from-cyan-700 hover:to-[#0A7FD4]"
                 }`}
               >

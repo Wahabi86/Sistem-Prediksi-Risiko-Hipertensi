@@ -78,7 +78,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="flex items-center justify-center w-full bg-white hover:bg-gray-300 lg:bg-gradient-to-r lg:from-cyan-800 lg:to-[#0872C2] text-cyan-900 lg:text-white lg:hover:from-cyan-700 hover:to-[#0A7FD4] font-bold py-3.5 rounded-xl transition-all duration-300 shadow-lg hover:shadow-cyan-900/20 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
+              className="flex items-center justify-center w-full bg-white hover:bg-gray-300 lg:bg-gradient-to-r lg:from-cyan-800 lg:to-[#0872C2] text-cyan-900 lg:text-white lg:hover:from-cyan-700 hover:to-[#0A7FD4] font-bold py-3.5 rounded-xl transition-all duration-300 shadow-lg hover:shadow-cyan-900/20 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
             >
               {loading ? "Memproses..." : "Masuk"}
             </button>

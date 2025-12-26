@@ -121,7 +121,7 @@ export default function RiwayatPage() {
         <div className="text-center bg-white p-10 rounded-xl shadow">
           <FileTextIcon className="w-16 h-16 mx-auto text-gray-300 mb-4" />
           <p className="text-gray-600 mb-4">Belum ada riwayat prediksi.</p>
-          <Link href="/form-prediksi" className="inline-block bg-gradient-to-r from-cyan-800 to-[#0872C2] text-white px-6 py-2 rounded-lg transition">
+          <Link href="/form-prediksi" className="inline-block bg-gradient-to-r from-cyan-800 to-[#0872C2] hover:from-cyan-700 hover:to-[#0A7FD4] text-white px-6 py-2 rounded-lg transition">
             Mulai Prediksi
           </Link>
         </div>
