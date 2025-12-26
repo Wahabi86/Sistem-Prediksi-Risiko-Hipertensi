@@ -1,3 +1,4 @@
+// Editing
 "use client";
 import React from "react";
 
@@ -35,11 +36,11 @@ interface PdfTemplateProps {
 
 export default function PdfTemplate({ riwayat, user, id }: PdfTemplateProps) {
   return (
-    <div id={id} style={{ padding: "40px", backgroundColor: "white", width: "750px", color: "#333" }}>
+    <div id={id} style={{ padding: "28px 32px", backgroundColor: "white", width: "750px", color: "#333" }}>
       {/* HEADER */}
       <div style={{ borderBottom: "2px solid #0872C2", paddingBottom: "10px" }}>
         <h1 style={{ color: "#0872C2", fontSize: "24px", margin: 0 }}>LAPORAN HASIL PREDIKSI RISIKO HIPERTENSI</h1>
-        <p style={{ margin: 0, fontSize: "12px" }}>Waktu Prediksi: {riwayat.tanggal}</p>
+        <p style={{ margin: 0, fontSize: "12px" }}>Waktu Prediksi: {riwayat.tanggal} WITA</p>
       </div>
 
       {/* Identitas */}
@@ -63,17 +64,28 @@ export default function PdfTemplate({ riwayat, user, id }: PdfTemplateProps) {
       </div>
 
       {/* Hasil Utama */}
-      <div style={{ padding: "15px", backgroundColor: "#f8fafc", borderRadius: "8px", marginBottom: "20px", marginTop: 0, border: "1px solid #e2e8f0" }}>
-        <h3 style={{ fontSize: "16px", marginTop: 0, fontWeight: "bold" }}>Kesimpulan Prediksi:</h3>
-        <p
-          style={{
-            fontWeight: "bold",
-            color: riwayat.hasilPrediksi.toLowerCase().includes("tidak") ? "#16a34a" : " #dc2626",
-          }}
-        >
-          {riwayat.hasilPrediksi}
-        </p>
-        <p>Probabilitas: {riwayat.probabilitas}</p>
+      <div style={{ marginBottom: "20px" }}>
+        <h3 style={{ borderBottom: "1px solid #eee", paddingBottom: "10px", fontSize: "16px", fontWeight: "bold" }}>Kesimpulan Prediksi</h3>
+        <table style={{ borderCollapse: "collapse", fontSize: "14px" }}>
+          <tbody>
+            <tr>
+              <td style={{ padding: "4px 12px 4px 0", width: "160px" }}>Hasil Prediksi</td>
+              <td
+                style={{
+                  padding: "4px 0",
+                  fontWeight: 600,
+                  color: riwayat.hasilPrediksi.toLowerCase().includes("tidak") ? "#16a34a" : "#dc2626",
+                }}
+              >
+                {riwayat.hasilPrediksi}
+              </td>
+            </tr>
+            <tr>
+              <td style={{ padding: "4px 12px 4px 0" }}>Probabilitas</td>
+              <td style={{ padding: "4px 0", fontWeight: "bold" }}>{riwayat.probabilitas}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       {/* Data Klinis */}
