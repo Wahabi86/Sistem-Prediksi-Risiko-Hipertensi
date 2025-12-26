@@ -25,9 +25,10 @@ export default function Navbar() {
     if (userData) {
       try {
         const user = JSON.parse(userData);
-        if (user.name) {
+        const displayName = user.nama_lengkap || user.nama || user.name;
+        if (displayName) {
           // Ambil huruf pertama dari nama user
-          setUserInitial(user.name.charAt(0).toUpperCase());
+          setUserInitial(displayName.charAt(0).toUpperCase());
         }
       } catch (e) {
         console.error("Gagal membaca data user", e);
@@ -51,10 +52,10 @@ export default function Navbar() {
     // 1. Hapus Token dan Data User
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    
+
     // 2. Tutup menu
     setUserMenuOpen(false);
-    
+
     // 3. Arahkan ke halaman Login
     router.push("/auth/login");
   };
@@ -107,12 +108,9 @@ export default function Navbar() {
                     <UserPen className="w-5 h-5 mr-2" />
                     Edit Profil
                   </Link>
-                  
+
                   {/* Tombol Logout dengan Handler Baru */}
-                  <button
-                    onClick={handleLogout}
-                    className="flex items-center w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100 transition-colors font-semibold"
-                  >
+                  <button onClick={handleLogout} className="flex items-center w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100 transition-colors font-semibold">
                     <LogoutIcon className="w-5 h-5 mr-2" />
                     Keluar
                   </button>

@@ -13,7 +13,7 @@ interface PredictionResult {
 
 export default function FormPage() {
   const [formData, setFormData] = useState({
-    gender: "",
+    jenis_kelamin: "",
     usia: "",
     tingkatStres: "0",
     waktuTidur: "",
@@ -34,10 +34,11 @@ export default function FormPage() {
     if (storedUser) {
       const user = JSON.parse(storedUser);
 
-      if (user?.gender) {
+      const genderFromStorage = user?.jenis_kelamin;
+      if (genderFromStorage) {
         setFormData((prev) => ({
           ...prev,
-          gender: user.gender,
+          jenis_kelamin: genderFromStorage,
         }));
 
         setIsGenderLocked(true);
@@ -164,7 +165,7 @@ export default function FormPage() {
                   <label className="block text-sm font-semibold text-gray-700 mb-2 sm:mb-3">Jenis Kelamin</label>
                   <div className="grid grid-cols-2 gap-3 sm:gap-4">
                     {["Laki-laki", "Perempuan"].map((option) => {
-                      const isSelected = formData.gender === option;
+                      const isSelected = formData.jenis_kelamin === option;
 
                       return (
                         <button
@@ -173,7 +174,7 @@ export default function FormPage() {
                           disabled={isGenderLocked}
                           onClick={() => {
                             if (!isGenderLocked) {
-                              handleInputChange("gender", option);
+                              handleInputChange("jenis_kelamin", option);
                             }
                           }}
                           className={`w-full px-4 py-3 rounded-lg border text-sm font-medium transition-all ${isSelected ? "bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed" : "bg-white text-gray-400 border-gray-300"} ${

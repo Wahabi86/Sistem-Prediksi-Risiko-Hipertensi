@@ -3,6 +3,7 @@ import React from "react";
 
 interface RiwayatData {
   id_riwayat: string | number;
+  nama_lengkap: string;
   tanggal: string;
   usia: string;
   tinggiBadan: string;
@@ -11,11 +12,14 @@ interface RiwayatData {
   tingkatStres: string;
   statusMerokok: string;
   waktuTidur: string;
+  olahraga: string;
+  riwayatTekananDarah: string;
+  riwayatKeluarga: string;
   hasilPrediksi: string;
   probabilitas: string;
   faktorPendukung: string;
   panduanKesehatan: string[];
-  gender?: string;
+  jenis_kelamin: string;
 }
 
 interface UserData {
@@ -44,11 +48,11 @@ export default function PdfTemplate({ riwayat, user, id }: PdfTemplateProps) {
           <tbody>
             <tr>
               <td style={{ width: "150px", padding: "4px 0" }}>Nama</td>
-              <td>: {user?.nama_lengkap || "-"}</td>
+              <td>: {riwayat.nama_lengkap || user?.nama_lengkap || "-"}</td>
             </tr>
             <tr>
               <td style={{ padding: "4px 0" }}>Jenis Kelamin</td>
-              <td>: {riwayat.gender || user?.jenis_kelamin || "-"}</td>
+              <td>: {riwayat.jenis_kelamin || user?.jenis_kelamin || "-"}</td>
             </tr>
             <tr>
               <td style={{ padding: "4px 0" }}>Usia</td>
@@ -74,7 +78,7 @@ export default function PdfTemplate({ riwayat, user, id }: PdfTemplateProps) {
 
       {/* Data Klinis */}
       <div style={{ marginBottom: "20px" }}>
-        <h3 style={{ borderBottom: "1px solid #eee", paddingBottom: "10px", fontSize: "16px" }}>Data Input</h3>
+        <h3 style={{ borderBottom: "1px solid #eee", paddingBottom: "10px", fontSize: "16px", fontWeight: "Bold" }}>Data Input</h3>
         <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "13px" }}>
           <tbody>
             <tr>
@@ -95,70 +99,39 @@ export default function PdfTemplate({ riwayat, user, id }: PdfTemplateProps) {
               <td>Waktu Tidur</td>
               <td>: {riwayat.waktuTidur}</td>
             </tr>
+            <tr>
+              <td style={{ padding: "8px 0" }}>Aktivitas Olahraga</td>
+              <td>: {riwayat.olahraga || "-"}</td>
+              <td>Riwayat Keluarga</td>
+              <td>: {riwayat.riwayatKeluarga || "-"}</td>
+            </tr>
+            <tr>
+              <td style={{ padding: "8px 0" }}>Riwayat Tekanan Darah</td>
+              <td colSpan={3}>: {riwayat.riwayatTekananDarah || "-"}</td>
+            </tr>
           </tbody>
         </table>
       </div>
 
       {/* Faktor Risiko */}
       <div style={{ marginBottom: "20px" }}>
-        <h3 style={{ borderBottom: "1px solid #eee", paddingBottom: "10px", fontSize: "16px" }}>Faktor Risiko</h3>
+        <h3 style={{ borderBottom: "1px solid #eee", paddingBottom: "10px", fontSize: "16px", fontWeight: "Bold" }}>Faktor Risiko</h3>
         <p style={{ fontSize: "13px", lineHeight: "1.5", textAlign: "justify" }}>{riwayat.faktorPendukung}</p>
       </div>
 
       {/* Panduan Kesehatan */}
       <div>
-        <h3
-          style={{
-            borderBottom: "1px solid #eee",
-            paddingBottom: "10px",
-            fontSize: "16px",
-            marginTop: 0,
-          }}
-        >
-          Panduan Kesehatan
-        </h3>
+        <h3 style={{ borderBottom: "1px solid #eee", paddingBottom: "10px", fontSize: "16px", marginTop: 0, fontWeight: "Bold" }}>Panduan Kesehatan</h3>
 
         {/* Kalimat pembuka*/}
-        <p
-          style={{
-            fontSize: "13px",
-            lineHeight: "1.6",
-            marginBottom: "8px",
-          }}
-        >
-          {riwayat.panduanKesehatan?.[0]}
-        </p>
+        <p style={{ fontSize: "13px", lineHeight: "1.6", marginBottom: "8px" }}>{riwayat.panduanKesehatan?.[0]}</p>
 
         {/* Bullet point*/}
-        <ul
-          style={{
-            fontSize: "13px",
-            lineHeight: "1.6",
-            paddingLeft: 0,
-            marginLeft: 0,
-            listStyleType: "none",
-          }}
-        >
+        <ul style={{ fontSize: "13px", lineHeight: "1.6", paddingLeft: 0, marginLeft: 0, listStyleType: "none" }}>
           {riwayat.panduanKesehatan?.slice(1).map((item: string, idx: number) => (
-            <li
-              key={idx}
-              style={{
-                marginBottom: "8px",
-                display: "flex",
-                alignItems: "flex-start",
-              }}
-            >
+            <li key={idx} style={{ marginBottom: "8px", display: "flex", alignItems: "flex-start" }}>
               {/* Bullet Custom */}
-              <span
-                style={{
-                  marginRight: "10px",
-                  color: "#333",
-                  fontSize: "18px",
-                  lineHeight: "1",
-                }}
-              >
-                •
-              </span>
+              <span style={{ marginRight: "10px", color: "#333", fontSize: "18px", lineHeight: "1" }}>•</span>
               <span style={{ flex: 1 }}>{item}</span>
             </li>
           ))}

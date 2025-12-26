@@ -93,7 +93,7 @@ def predict_hypertension(data):
     
     else:
         # Jika ada kasus Tidak Terdeteksi Hipertensi
-        non_hypertension = "Berdasarkan data Anda, faktor kesehatan saat ini berada dalam rentang normal."
+        non_hypertension = "Berdasarkan data Anda, indikator kesehatan saat ini berada dalam rentang normal."
         
         if risk_messages:
             # Kasus yang Tidak Terdeteksi Hipertensi tapi memeliki beberapa faktor yang mengarah ke hipertensi

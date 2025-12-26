@@ -5,6 +5,7 @@ import PdfTemplate from "./PdfTemplate";
 
 interface RiwayatData {
   id_riwayat: string | number;
+  nama_lengkap: string;
   tanggal: string;
   usia: string;
   tinggiBadan: string;
@@ -13,10 +14,14 @@ interface RiwayatData {
   tingkatStres: string;
   statusMerokok: string;
   waktuTidur: string;
+  olahraga: string;
+  riwayatTekananDarah: string;
+  riwayatKeluarga: string;
   hasilPrediksi: string;
   probabilitas: string;
   faktorPendukung: string;
   panduanKesehatan: string[];
+  jenis_kelamin: string;
 }
 
 interface UserData {
@@ -33,26 +38,21 @@ export default function DownloadButton({ riwayat, user }: DownloadButtonProps) {
   const [isDownloading, setIsDownloading] = useState(false);
 
   const handleDownload = async () => {
-    const currentId = riwayat.id_riwayat;
-
-    if (!currentId) {
-      console.error("ID tidak ditemukan pada data riwayat");
-      return;
-    }
-
     setIsDownloading(true);
 
     try {
       const html2pdf = (await import("html2pdf.js")).default;
-      const element = document.getElementById(`pdf-content-${currentId}`);
+
+      // Tetap menggunakan riwayat.id_riwayat hanya untuk mencari elemen
+      const element = document.getElementById(`pdf-content-${riwayat.id_riwayat}`);
 
       if (!element) {
-        throw new Error(`Template untuk ID ${currentId} tidak ditemukan`);
+        throw new Error("Template PDF tidak ditemukan");
       }
 
       const opt = {
         margin: 10,
-        filename: `Riwayat_MyTenxi_${currentId}.pdf`,
+        filename: "RiwayatPrediksi_MyTenxi.pdf", // Nama file statis & bersih
         image: { type: "jpeg", quality: 0.98 } as const,
         html2canvas: { scale: 2, useCORS: true },
         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" } as const,

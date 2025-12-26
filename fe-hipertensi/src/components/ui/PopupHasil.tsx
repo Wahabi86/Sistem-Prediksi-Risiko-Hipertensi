@@ -21,7 +21,7 @@ interface FormData {
   riwayatKeluarga: string;
   olahraga: string;
   statusMerokok: string;
-  gender: string;
+  jenis_kelamin: string;
   usia: string;
 }
 
@@ -54,7 +54,7 @@ export default function PopupHasil({ onClose, result, inputData, bmiValue }: Pop
     <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
       <div className="bg-[#f9fafb] rounded-2xl shadow-xl w-full max-w-lg sm:max-w-xl lg:max-w-2xl p-4 sm:p-6 md:p-8 relative">
         {/* Tombol Close */}
-        <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 hover:text-gray-800">
+        <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 cursor-pointer">
           <X size={24} />
         </button>
 
@@ -105,7 +105,7 @@ export default function PopupHasil({ onClose, result, inputData, bmiValue }: Pop
             {/* Komponen Download PDF Otomatis */}
             <DownloadButton
               riwayat={{
-                id_riwayat: "Baru", 
+                id_riwayat: "Baru",
                 tanggal: new Date()
                   .toLocaleString("en-GB", {
                     timeZone: "Asia/Makassar",
@@ -117,6 +117,7 @@ export default function PopupHasil({ onClose, result, inputData, bmiValue }: Pop
                     hour12: false,
                   })
                   .replace(" at ", ", "),
+                nama_lengkap: userLogin?.nama_lengkap || "Pasien",
                 usia: inputData.usia,
                 tinggiBadan: inputData.tinggiBadan,
                 beratBadan: inputData.beratBadan,
@@ -124,10 +125,14 @@ export default function PopupHasil({ onClose, result, inputData, bmiValue }: Pop
                 tingkatStres: inputData.tingkatStres,
                 statusMerokok: inputData.statusMerokok,
                 waktuTidur: inputData.waktuTidur,
+                olahraga: inputData.olahraga,
+                riwayatTekananDarah: inputData.riwayatTekananDarah,
+                riwayatKeluarga: inputData.riwayatKeluarga,
                 hasilPrediksi: result.status,
                 probabilitas: result.probability,
                 faktorPendukung: result.factor_supporting,
                 panduanKesehatan: result.health_guidelines,
+                jenis_kelamin: inputData.jenis_kelamin,
               }}
               user={userLogin}
             />
@@ -138,7 +143,7 @@ export default function PopupHasil({ onClose, result, inputData, bmiValue }: Pop
                 router.push("/halaman-edukasi");
               }}
               className="
-                text-cyan-600 hover:text-cyan-800 font-medium text-sm underline underline-offset-4 transition"
+                text-cyan-600 hover:text-cyan-800 font-medium text-sm underline underline-offset-4 transition cursor-pointer"
             >
               Pelajari Lebih Lanjut Tentang Hipertensi
             </button>

@@ -7,6 +7,7 @@ import DownloadButton from "@/components/ui/ButtonDownload";
 
 interface Riwayat {
   id_riwayat: number;
+  nama_lengkap: string;
   tanggal: string;
   hasilPrediksi: string;
   probabilitas: string;
@@ -23,6 +24,7 @@ interface Riwayat {
   statusMerokok: string;
   riwayatTekananDarah: string;
   riwayatKeluarga: string;
+  jenis_kelamin: string;
 }
 interface UserData {
   id_users: number;
