@@ -43,7 +43,7 @@ export default function PdfTemplate({ riwayat, user, id }: PdfTemplateProps) {
         <table style={{ borderCollapse: "collapse" }}>
           <tbody>
             <tr>
-              <td style={{ width: "150px", padding: "4px 0" }}>Nama Lengkap</td>
+              <td style={{ width: "150px", padding: "4px 0" }}>Nama</td>
               <td>: {user?.nama_lengkap || "-"}</td>
             </tr>
             <tr>
@@ -64,7 +64,7 @@ export default function PdfTemplate({ riwayat, user, id }: PdfTemplateProps) {
         <p
           style={{
             fontWeight: "bold",
-            color: riwayat.hasilPrediksi.toLowerCase().includes("Terdeteksi Hipertensi") ? "#16a34a" : "#dc2626",
+            color: riwayat.hasilPrediksi.toLowerCase().includes("tidak") ? "#16a34a" : " #dc2626",
           }}
         >
           {riwayat.hasilPrediksi}

@@ -48,7 +48,7 @@ export function useAuth() {
       const res = await fetch(`${API_URL}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, gender, email, password }),
+        body: JSON.stringify({ nama_lengkap: name, jenis_kelamin: gender, email, password }),
       });
 
       const data = await res.json();

@@ -34,9 +34,9 @@ def register():
 
         # 3. Proses Simpan
         new_user = User(
-            nama_lengkap=data.get('name'),
+            nama_lengkap=data.get('nama_lengkap'),
             email=data.get('email'),
-            jenis_kelamin=data.get('gender')
+            jenis_kelamin=data.get('jenis_kelamin')
         )
         new_user.set_password(data['password'])
 
@@ -65,9 +65,9 @@ def login():
             "access_token": access_token,
             "user": {
                 "id_users": user.id_users,
-                "name": user.nama_lengkap,
+                "nama_lengkap": user.nama_lengkap,
                 "email": user.email,
-                "gender": user.jenis_kelamin
+                "jenis_kelamin": user.jenis_kelamin
             }
         }), 200
     
@@ -85,10 +85,10 @@ def get_profile():
         return jsonify({"msg": "User tidak ditemukan"}), 404
 
     return jsonify({
-        "id": user.id_users,
-        "name": user.nama_lengkap,
+        "id_users": user.id_users,
+        "nama_lengkap": user.nama_lengkap,
         "email": user.email,
-        "gender": user.jenis_kelamin
+        "jenis_kelamin": user.jenis_kelamin
     }), 200
 
 # UPDATE PROFILE (PUT)
@@ -104,10 +104,10 @@ def update_profile():
     data = request.get_json()
 
     # Update field yang dikirim saja
-    if 'name' in data:
-        user.nama_lengkap = data['name']
-    if 'gender' in data:
-        user.jenis_kelamin = data['gender']
+    if 'nama_lengkap' in data:
+        user.nama_lengkap = data['nama_lengkap']
+    if 'jenis_kelamin' in data:
+        user.jenis_kelamin = data['jenis_kelamin']
     
     # Khusus update password (harus di-hash ulang)
     if 'password' in data and data['password']:
@@ -118,9 +118,9 @@ def update_profile():
         return jsonify({
             "msg": "Profil berhasil diperbarui",
             "user": {
-                "name": user.nama_lengkap,
+                "nama_lengkap": user.nama_lengkap,
                 "email": user.email,
-                "gender": user.jenis_kelamin
+                "jenis_kelamin": user.jenis_kelamin
             }
         }), 200
     except Exception as e:
