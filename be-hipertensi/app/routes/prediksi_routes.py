@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from app.services.ml_service import predict_hypertension
-from app.models.riwayat import RiwayatPrediksi # Pastikan file riwayat.py sudah dibuat
+from app.models.riwayat import RiwayatPrediksi
 from app.extensions import db
 from datetime import datetime, timezone
 import json
@@ -20,7 +20,7 @@ def prediksi():
         # 2. Ambil user_id dari data yang dikirim Frontend
         user_id = data.get("user_id")
         
-        # 3. Simpan ke database jika ada user_id
+        # 3. Simpan ke database jika ada id_users
         health_guidelines = result.get("health_guidelines", [])
         panduan_kesehatan_str = json.dumps(health_guidelines)
 
@@ -56,7 +56,7 @@ def prediksi():
         print(f"Error saat prediksi/simpan: {e}")
         return jsonify({"message": "Kesalahan internal server."}), 500
 
-# Tambahkan route baru untuk mengambil riwayat milik user tertentu
+# Menambahkan route baru untuk mengambil riwayat milik user tertentu
 @prediksi_routes.route("/riwayat/<int:user_id>", methods=["GET"])
 def get_riwayat(user_id):
     try:
