@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { User, Brain, Stethoscope, Dumbbell, MoveLeft } from "lucide-react";
 import PopupHasil from "@/components/ui/PopupHasil";
 import Link from "next/link";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 interface PredictionResult {
   status: string;
