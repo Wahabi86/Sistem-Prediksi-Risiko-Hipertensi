@@ -125,11 +125,13 @@ export default function FormPage() {
       setShowPopup(true);
     } catch (err: unknown) {
       // Melakukan pengecekan apakah err memiliki properti message
-      const errorMessage = err instanceof Error ? err.message : "Terjadi kesalahan yang tidak diketahui";
+      const errorMessage = err instanceof Error ? err.message : "Terjadi kesalahan sistem";
 
       console.error("Fetch Error:", errorMessage);
+      // Mengisi state error untuk ditampilkan di UI
       setError(errorMessage);
-      alert(`Terjadi Kesalahan: ${errorMessage}`);
+      // Untuk scroll ke bagian informasi error
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } finally {
       setIsLoading(false);
     }
@@ -148,6 +150,13 @@ export default function FormPage() {
               </div>
             </div>
           </div>
+
+          {/* Error massage */}
+          {error && (
+            <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg flex items-center gap-2 animate-pulse">
+              <span className="font-bold">Kesalahan:</span> {error}
+            </div>
+          )}
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">

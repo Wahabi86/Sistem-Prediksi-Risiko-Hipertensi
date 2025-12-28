@@ -35,7 +35,7 @@ export default function LoginPage() {
             className="space-y-6"
           >
             {/* Pesan Error */}
-            {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-sm text-center font-medium">{error}</div>}
+            {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-sm text-center font-medium animate-pulse">{error}</div>}
 
             {/* Email */}
             <div className="space-y-2">
