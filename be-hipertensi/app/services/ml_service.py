@@ -33,7 +33,6 @@ try:
     load_model()
 except Exception as e:
     print(e)
-    # Model tetap None dan prediksi akan dilewati
 
 def predict_hypertension(data):
     if model is None:

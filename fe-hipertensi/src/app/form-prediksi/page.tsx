@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { User, Brain, Stethoscope, Dumbbell, MoveLeft } from "lucide-react";
 import PopupHasil from "@/components/ui/PopupHasil";
 import Link from "next/link";
+import axios, { AxiosError } from "axios";
 
 interface PredictionResult {
   status: string;
@@ -105,29 +106,23 @@ export default function FormPage() {
         bmi: parseFloat(bmi), // Menambahkan BMI hasil kalkulasi ke payload
         user_id: user?.id_users,
       };
-      const response = await fetch(`${apiUrl}/api/prediksi`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        // menangani error dari backend
-        throw new Error(data.message || "Gagal mendapatkan hasil prediksi.");
-      }
-
-      // Simpan Hasil dan Tampilkan Popup
-      setPredictionResult(data);
+      const response = await axios.post<PredictionResult>(`${apiUrl}/api/prediksi`, payload);
+      //  Simpan Hasil dan Tampilkan Popup
+      setPredictionResult(response.data);
       setShowPopup(true);
     } catch (err: unknown) {
       // Melakukan pengecekan apakah err memiliki properti message
-      const errorMessage = err instanceof Error ? err.message : "Terjadi kesalahan sistem";
+      let errorMessage = "Terjadi kesalahan sistem";
 
-      console.error("Fetch Error:", errorMessage);
+      if (axios.isAxiosError(err)) {
+        // Mengambil pesan error dari backend jika ada (contoh: err.response.data.message)
+        errorMessage = err.response?.data?.message || err.message || "Gagal mendapatkan hasil prediksi";
+      } else if (err instanceof Error) {
+        errorMessage = err.message;
+      }
+
+      console.error("Prediction Error:", errorMessage);
       // Mengisi state error untuk ditampilkan di UI
       setError(errorMessage);
       // Untuk scroll ke bagian informasi error
@@ -380,6 +375,7 @@ export default function FormPage() {
                   <input
                     type="number"
                     placeholder="Contoh: 170"
+                    min="0"
                     value={formData.tinggiBadan}
                     onChange={(e) => handleInputChange("tinggiBadan", e.target.value)}
                     className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-sm"
@@ -392,6 +388,7 @@ export default function FormPage() {
                   <input
                     type="number"
                     placeholder="Contoh: 70"
+                    min="0"
                     value={formData.beratBadan}
                     onChange={(e) => handleInputChange("beratBadan", e.target.value)}
                     className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-sm"

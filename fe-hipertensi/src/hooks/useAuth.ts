@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import axios, { AxiosError } from "axios";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
+interface ApiErrorResponse {
+  msg?: string;
+}
 
 export function useAuth() {
   const router = useRouter();
@@ -13,15 +17,12 @@ export function useAuth() {
     setError("");
 
     try {
-      const res = await fetch(`${API_URL}/api/auth/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+      const response = await axios.post(`${API_URL}/api/auth/login`, {
+        email,
+        password,
       });
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.msg || "Login gagal");
-
+      const data = response.data;
       localStorage.setItem("token", data.access_token);
       if (data.user) {
         localStorage.setItem("user", JSON.stringify(data.user));
@@ -29,12 +30,8 @@ export function useAuth() {
 
       router.push("/beranda");
     } catch (err: unknown) {
-      // Cek apakah err adalah instance dari Error
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("Terjadi kesalahan yang tidak diketahui");
-      }
+      const axiosError = err as AxiosError<ApiErrorResponse>;
+      setError(axiosError.response?.data?.msg || "Login gagal");
     } finally {
       setLoading(false);
     }
@@ -45,23 +42,17 @@ export function useAuth() {
     setError("");
 
     try {
-      const res = await fetch(`${API_URL}/api/auth/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nama_lengkap: name, jenis_kelamin: gender, email, password }),
+      await axios.post(`${API_URL}/api/auth/register`, {
+        nama_lengkap: name,
+        jenis_kelamin: gender,
+        email,
+        password,
       });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.msg || "Registrasi gagal");
 
       router.push("/auth/login");
     } catch (err: unknown) {
-      // Cek apakah err adalah instance dari Error
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("Terjadi kesalahan yang tidak diketahui");
-      }
+      const axiosError = err as AxiosError<ApiErrorResponse>;
+      setError(axiosError.response?.data?.msg || "Registrasi gagal");
     } finally {
       setLoading(false);
     }

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { FileTextIcon } from "@/components/ui/Icons";
 import DownloadButton from "@/components/ui/ButtonDownload";
+import axios from "axios";
 
 interface Riwayat {
   id_riwayat: number;
@@ -48,10 +49,10 @@ export default function RiwayatPage() {
     const user: UserData = JSON.parse(storedUser);
     setUserData(user);
 
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/riwayat/${user.id_users}`)
-      .then((res) => res.json())
-      .then((data: Riwayat[]) => {
-        setDatasRiwayat(data);
+    axios
+      .get<Riwayat[]>(`${process.env.NEXT_PUBLIC_API_URL}/api/riwayat/${user.id_users}`)
+      .then((response) => {
+        setDatasRiwayat(response.data);
         setIsLoading(false);
       })
       .catch((err) => {
