@@ -52,7 +52,7 @@ export default function DownloadButton({ riwayat, user }: DownloadButtonProps) {
 
       const opt = {
         margin: 10,
-        filename: "RiwayatPrediksi_MyTenxi.pdf", // Nama file statis & bersih
+        filename: "RiwayatPrediksi_MyTenxi.pdf",
         image: { type: "jpeg", quality: 0.98 } as const,
         html2canvas: { scale: 2, useCORS: true },
         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" } as const,

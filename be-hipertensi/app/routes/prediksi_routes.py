@@ -20,7 +20,7 @@ def prediksi():
         # 2. Ambil user_id dari data yang dikirim Frontend
         user_id = data.get("user_id")
         
-        # 3. Simpan ke database jika ada id_users
+        # 3. Simpan ke database jika ada user_id
         health_guidelines = result.get("health_guidelines", [])
         panduan_kesehatan_str = json.dumps(health_guidelines)
 
