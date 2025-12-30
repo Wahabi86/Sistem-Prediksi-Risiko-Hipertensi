@@ -7,15 +7,20 @@ import { useEffect, useState } from "react";
 export default function WelcomePage() {
   // State untuk menentukan tujuan tombol (Default ke login)
   const [destination, setDestination] = useState("/auth/login");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Cek apakah user sudah login (ada token)
     const token = localStorage.getItem("token");
-    if (token) {
+    const user = localStorage.getItem("user");
+    if (token && user) {
       // Jika sudah login, tombol akan mengarah langsung ke Beranda
       setDestination("/beranda");
     }
+    setIsLoading(false);
   }, []);
+
+  if (isLoading) return null;
 
   return (
     <main className="h-screen w-full flex items-center justify-center bg-gradient-to-r from-cyan-800 to-[#0872C2] px-4 text-white relative overflow-hidden">
