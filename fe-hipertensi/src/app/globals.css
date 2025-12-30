@@ -58,3 +58,22 @@ html {
 .stress-slider::-moz-range-thumb:hover {
   background-color: #0e7490;
 }
+
+@layer components {
+  .swal-btn-gradient {
+    @apply bg-gradient-to-r from-cyan-800 to-[#0872C2] text-white px-8 py-2 rounded-xl font-bold border-none outline-none shadow-md transition-all active:scale-95 cursor-pointer;
+  }
+
+  .swal-btn-gradient:hover {
+    @apply from-cyan-700 to-[#0A7FD4];
+  }
+}
+
+/* agar tidak membuat space saat popup sweetalert muncul */
+body.swal2-shown {
+  padding-right: 0 !important;
+}
+
+.swal2-height-auto {
+  height: 100% !important;
+}

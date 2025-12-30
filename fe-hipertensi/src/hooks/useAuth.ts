@@ -58,5 +58,39 @@ export function useAuth() {
     }
   };
 
-  return { login, register, loading, error };
+  // Logic update profile
+  const updateProfile = async (updateData: { nama_lengkap?: string; password?: string }) => {
+    setLoading(true);
+    setError("");
+    const token = localStorage.getItem("token");
+
+    try {
+      const response = await axios.patch(`${API_URL}/api/auth/me`, updateData, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      // Update data user di localStorage agar Navbar/Halaman lain ikut terupdate
+      if (response.data.user) {
+        // Mengambil data lama
+        const currentStoredUser = JSON.parse(localStorage.getItem("user") || "{}");
+
+        // Menggabungkan data lama dan data baru khususnya id_users
+        const updatedUser = {
+          ...currentStoredUser,
+          ...response.data.user,
+        };
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+      }
+      return { success: true, msg: response.data.msg };
+    } catch (err: unknown) {
+      const axiosError = err as AxiosError<ApiErrorResponse>;
+      const msg = axiosError.response?.data?.msg || "Gagal memperbarui profil";
+      setError(msg);
+      return { success: false, msg };
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { login, register, updateProfile, loading, error };
 }

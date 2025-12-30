@@ -92,7 +92,7 @@ def get_profile():
     }), 200
 
 # UPDATE PROFILE (PUT)
-@auth_routes.route('/me', methods=['PUT'])
+@auth_routes.route('/me', methods=['PATCH'])
 @jwt_required()
 def update_profile():
     current_user_id = get_jwt_identity()

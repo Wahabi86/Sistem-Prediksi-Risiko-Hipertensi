@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { FileTextIcon } from "@/components/ui/Icons";
@@ -48,6 +47,13 @@ export default function RiwayatPage() {
 
     const user: UserData = JSON.parse(storedUser);
     setUserData(user);
+
+    // Pastikan id_users ada sebelum panggil axios
+    if (!user.id_users) {
+      console.error("ID User tidak ditemukan. Silakan login ulang.");
+      setIsLoading(false);
+      return;
+    }
 
     axios
       .get<Riwayat[]>(`${process.env.NEXT_PUBLIC_API_URL}/api/riwayat/${user.id_users}`)

@@ -4,6 +4,7 @@ import { User, Brain, Stethoscope, Dumbbell, MoveLeft } from "lucide-react";
 import PopupHasil from "@/components/ui/PopupHasil";
 import Link from "next/link";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 interface PredictionResult {
   status: string;
@@ -33,25 +34,24 @@ export default function FormPage() {
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
-      const user = JSON.parse(storedUser);
-
-      const genderFromStorage = user?.jenis_kelamin;
-      if (genderFromStorage) {
-        setFormData((prev) => ({
-          ...prev,
-          jenis_kelamin: genderFromStorage,
-        }));
-
-        setIsGenderLocked(true);
+      try {
+        const user = JSON.parse(storedUser);
+        if (user?.jenis_kelamin) {
+          setFormData((prev) => ({ ...prev, jenis_kelamin: user.jenis_kelamin }));
+          setIsGenderLocked(true);
+        }
+      } catch (e) {
+        console.error("Gagal parse data user", e);
       }
     }
   }, []);
 
   const [predictionResult, setPredictionResult] = useState<PredictionResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const handleInputChange = (field: keyof typeof formData, value: string) => {
+    // Mencegah nilai negatif untuk field numerik
+    if (["usia", "tinggiBadan", "beratBadan"].includes(field) && parseFloat(value) < 0) return;
     setFormData((prev) => ({
       ...prev,
       [field]: value,
@@ -77,56 +77,76 @@ export default function FormPage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsLoading(true);
-    setError(null);
-    setPredictionResult(null);
 
+    // 1. Validasi Field Utama
     const requiredFields: (keyof typeof formData)[] = ["usia", "tingkatStres", "waktuTidur", "riwayatTekananDarah", "riwayatKeluarga", "olahraga", "statusMerokok"];
 
     for (const field of requiredFields) {
-      if (formData[field] === "") {
-        alert("Harap lengkapi semua data");
-        setIsLoading(false);
+      if (formData[field] === "" || (formData[field] === "0" && field === "tingkatStres")) {
+        // Catatan: Jika tingkat stres 0 dianggap valid, hapus pengecekan "0" di atas
+        Swal.fire({
+          title: "Data Belum Lengkap",
+          text: "Harap isi semua informasi pada form agar prediksi akurat.",
+          icon: "warning",
+          customClass: {
+            confirmButton: "swal-btn-gradient",
+          },
+          buttonsStyling: false,
+        });
         return;
       }
     }
 
-    if (!bmi) {
-      alert("Harap masukkan Tinggi dan Berat Badan untuk menghitung BMI.");
-      setIsLoading(false);
+    // 2. Validasi BMI (Tinggi & Berat Badan)
+    if (!bmi || formData.tinggiBadan === "" || formData.beratBadan === "") {
+      Swal.fire({
+        title: "Data Fisik Kosong",
+        text: "Harap masukkan Tinggi dan Berat Badan untuk menghitung BMI.",
+        icon: "warning",
+        customClass: {
+          confirmButton: "swal-btn-gradient",
+        },
+        buttonsStyling: false,
+      });
       return;
     }
+
+    // 3. Jika validasi lolos, lanjutkan proses API
+    setIsLoading(true);
+    setPredictionResult(null);
 
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL;
       const storedUser = localStorage.getItem("user");
       const user = storedUser ? JSON.parse(storedUser) : null;
+
       const payload = {
-        ...formData, // Ini mengirim usia, tingkatStres, waktuTidur, dll.
-        bmi: parseFloat(bmi), // Menambahkan BMI hasil kalkulasi ke payload
+        ...formData,
+        bmi: parseFloat(bmi),
         user_id: user?.id_users,
       };
 
       const response = await axios.post<PredictionResult>(`${apiUrl}/api/prediksi`, payload);
-      //  Simpan Hasil dan Tampilkan Popup
+
+      // Notifikasi Berhasil (Opsional sebelum popup muncul)
       setPredictionResult(response.data);
       setShowPopup(true);
     } catch (err: unknown) {
-      // Melakukan pengecekan apakah err memiliki properti message
       let errorMessage = "Terjadi kesalahan sistem";
-
       if (axios.isAxiosError(err)) {
-        // Mengambil pesan error dari backend jika ada (contoh: err.response.data.message)
         errorMessage = err.response?.data?.message || err.message || "Gagal mendapatkan hasil prediksi";
-      } else if (err instanceof Error) {
-        errorMessage = err.message;
       }
 
-      console.error("Prediction Error:", errorMessage);
-      // Mengisi state error untuk ditampilkan di UI
-      setError(errorMessage);
-      // Untuk scroll ke bagian informasi error
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      // Tampilkan error menggunakan SweetAlert2
+      Swal.fire({
+        title: "Gagal Memproses",
+        text: errorMessage,
+        icon: "error",
+        customClass: {
+          confirmButton: "swal-btn-gradient",
+        },
+        buttonsStyling: false,
+      });
     } finally {
       setIsLoading(false);
     }
@@ -145,13 +165,6 @@ export default function FormPage() {
               </div>
             </div>
           </div>
-
-          {/* Error massage */}
-          {error && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg flex items-center gap-2 animate-pulse">
-              <span className="font-bold">Kesalahan:</span> {error}
-            </div>
-          )}
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
@@ -181,8 +194,7 @@ export default function FormPage() {
                               handleInputChange("jenis_kelamin", option);
                             }
                           }}
-                          className={`w-full px-4 py-3 rounded-lg border text-sm font-medium transition-all ${isSelected ? "bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed" : "bg-white text-gray-400 border-gray-300"} ${
-                            isGenderLocked ? "cursor-not-allowed" : ""
+                          className={`w-full px-4 py-3 rounded-lg border text-sm font-medium transition-all ${isSelected ? "bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed" : "bg-white text-gray-400 border-gray-300"}
                           } focus:outline-none`}
                         >
                           {option}

@@ -13,28 +13,43 @@ export default function Navbar() {
   const [userInitial, setUserInitial] = useState("U"); // Default inisial "U" (User)
   const pathname = usePathname();
 
-  // Menutup menu saat berpindah halaman
-  useEffect(() => {
-    setUserMenuOpen(false);
-    setMobileMenuOpen(false);
-  }, [pathname]);
-
-  // Ambil Nama User dari LocalStorage saat Navbar dimuat
-  useEffect(() => {
+  const updateNavbarInitial = () => {
     const userData = localStorage.getItem("user");
     if (userData) {
       try {
         const user = JSON.parse(userData);
         const displayName = user.nama_lengkap || user.nama || user.name;
         if (displayName) {
-          // Ambil huruf pertama dari nama user
           setUserInitial(displayName.charAt(0).toUpperCase());
         }
       } catch (e) {
         console.error("Gagal membaca data user", e);
       }
     }
+  };
+
+  // Ambil Nama User dari LocalStorage saat Navbar dimuat
+  useEffect(() => {
+    // Jalankan saat pertama kali load
+    updateNavbarInitial();
+
+    // Dengar event kustom "user-updated" (untuk tab yang sama)
+    window.addEventListener("user-updated", updateNavbarInitial);
+
+    // Dengar event "storage" (jika user buka tab berbeda)
+    window.addEventListener("storage", updateNavbarInitial);
+
+    return () => {
+      window.removeEventListener("user-updated", updateNavbarInitial);
+      window.removeEventListener("storage", updateNavbarInitial);
+    };
   }, []);
+
+  // Menutup menu saat berpindah halaman
+  useEffect(() => {
+    setUserMenuOpen(false);
+    setMobileMenuOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     if (mobileMenuOpen) {
