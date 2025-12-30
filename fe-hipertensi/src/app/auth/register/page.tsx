@@ -20,8 +20,8 @@ export default function RegisterPage() {
       <AuthStyle />
 
       {/* Section Kanan */}
-      <div className=" flex items-center justify-center p-6 sm:p-10 lg:p-12 bg-gradient-to-r from-cyan-800 to-[#0872C2] lg:bg-[#f9fafb] lg:from-transparent lg:to-transparent ">
-        <div className="w-full max-w-md space-y-8 bg-white/10 lg:bg-transparent p-8 sm:p-10 rounded-3xl backdrop-blur-md lg:backdrop-blur-none shadow-2xl lg:shadow-none border border-white/20 lg:border-none">
+      <div className="min-h-screen flex items-center justify-center p-4 md:p-2 lg:p-12 bg-gradient-to-r from-cyan-800 to-[#0872C2] lg:bg-[#f9fafb] lg:from-transparent lg:to-transparent overflow-y-auto">
+        <div className="w-full max-w-md my-auto space-y-5 bg-white/10 lg:bg-transparent p-6 sm:p-8 rounded-3xl backdrop-blur-md lg:backdrop-blur-none shadow-2xl lg:shadow-none border border-white/20 lg:border-none">
           {/* Heading */}
           <div className="text-center">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white lg:text-slate-800 leading-tight">Buat Akun</h2>
@@ -34,7 +34,7 @@ export default function RegisterPage() {
               e.preventDefault();
               register(name, gender, email, password);
             }}
-            className="space-y-4 sm:space-y-5 md:space-y-6"
+            className="space-y-4 md:space-y-4 lg:space-y-6"
           >
             {/* Pesan Error */}
             {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-sm text-center font-medium animate-pulse">{error}</div>}

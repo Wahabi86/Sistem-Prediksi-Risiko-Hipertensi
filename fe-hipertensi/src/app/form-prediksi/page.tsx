@@ -139,7 +139,7 @@ export default function FormPage() {
 
       // Tampilkan error menggunakan SweetAlert2
       Swal.fire({
-        title: "Gagal Memproses",
+        title: "Gagal Memproses Prediksi",
         text: errorMessage,
         icon: "error",
         customClass: {

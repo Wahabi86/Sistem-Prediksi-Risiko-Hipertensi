@@ -18,9 +18,9 @@ export default function WelcomePage() {
   }, []);
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-cyan-800 to-[#0872C2] px-4 sm:px-6 lg:px-8 py-8 sm:py-12 text-white relative overflow-hidden">
+    <main className="h-screen w-full flex items-center justify-center bg-gradient-to-r from-cyan-800 to-[#0872C2] px-4 text-white relative overflow-hidden">
       {/* Container utama */}
-      <div className="relative z-10 flex flex-col items-center max-w-4xl w-full space-y-8 sm:space-y-10 lg:space-y-12">
+      <div className="relative z-10 flex flex-col items-center max-w-4xl w-full space-y-6 sm:space-y-8 lg:space-y-10">
         {/* Header Section */}
         <div className="text-center space-y-2">
           <span className="text-xs sm:text-sm md:text-base font-bold tracking-[0.4em] uppercase text-cyan-200/80 block">Selamat Datang</span>
@@ -31,11 +31,13 @@ export default function WelcomePage() {
             <div className="h-[1px] w-8 sm:w-12 bg-gradient-to-l from-transparent to-white/40" />
           </div>
         </div>
-        
+
         {/* Logo */}
         <div className="relative">
           <div className="absolute inset-0 rounded-full bg-white/10 blur-3xl" />
-          <Image src="/images/logo.png" alt="MyTenxi Logo" width={220} height={220} className="relative object-contain drop-shadow-2xl" priority />
+          <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-[220px] md:h-[220px] relative">
+            <Image src="/images/logo.png" alt="MyTenxi Logo" fill className="object-contain drop-shadow-2xl" priority />
+          </div>
         </div>
 
         {/* Description Section */}

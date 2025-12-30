@@ -54,7 +54,7 @@ export default function EditPage() {
       Swal.fire({
         title: "Tidak Ada Perubahan",
         text: "Silakan ubah nama atau kata sandi Anda terlebih dahulu sebelum menyimpan.",
-        icon: "info",
+        icon: "warning",
         customClass: {
           confirmButton: "swal-btn-gradient",
         },
@@ -166,7 +166,9 @@ export default function EditPage() {
             <button
               type="submit"
               disabled={loading}
-              className="bg-gradient-to-r from-cyan-800 to-[#0872C2] hover:from-cyan-700 hover:to-[#0A7FD4] text-white px-10 sm:px-12 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 cursor-pointer"
+              className={`bg-gradient-to-r from-cyan-800 to-[#0872C2] hover:from-cyan-700 hover:to-[#0A7FD4] text-white px-10 sm:px-12 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 active:scale-95 cursor-pointer ${
+                loading ? "opacity-60 cursor-not-allowed" : "hover:from-cyan-700 hover:to-[#0A7FD4]"
+              }`}
             >
               {loading ? "Menyimpan..." : "Simpan Perubahan"}
             </button>
