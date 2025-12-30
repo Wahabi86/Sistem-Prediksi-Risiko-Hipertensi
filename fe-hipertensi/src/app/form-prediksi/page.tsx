@@ -83,7 +83,7 @@ export default function FormPage() {
 
     for (const field of requiredFields) {
       if (formData[field] === "" || (formData[field] === "0" && field === "tingkatStres")) {
-        // Catatan: Jika tingkat stres 0 dianggap valid, hapus pengecekan "0" di atas
+        // Jika tingkat stres 0 dianggap valid, hapus pengecekan "0" di atas
         Swal.fire({
           title: "Data Belum Lengkap",
           text: "Harap isi semua informasi pada form agar prediksi akurat.",
