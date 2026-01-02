@@ -126,12 +126,14 @@ export default function FormPage() {
         user_id: user?.id_users,
       };
 
+      // Integrasi ke backend Flask menggunakan Axios (POST)
       const response = await axios.post<PredictionResult>(`${apiUrl}/api/prediksi`, payload);
 
-      // Notifikasi Berhasil (Opsional sebelum popup muncul)
+      // Penanganan respon sukses
       setPredictionResult(response.data);
       setShowPopup(true);
     } catch (err: unknown) {
+      // Penanganan Error
       let errorMessage = "Terjadi kesalahan sistem";
       if (axios.isAxiosError(err)) {
         errorMessage = err.response?.data?.message || err.message || "Gagal mendapatkan hasil prediksi";
