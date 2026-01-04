@@ -14,11 +14,11 @@ export default function Home() {
   const router = useRouter();
   const [isAuthorized, setIsAuthorized] = useState(false); // State untuk izin akses
 
-  // LOGIKA PENGAMANAN HALAMAN
+  // Logika untuk mengatasi user yang tidak mempunyai token
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      // Jika token tidak ada, tendang ke login
+      // Jika token tidak ada arahkan ke login
       router.push("/auth/login");
     } else {
       // Jika ada, izinkan konten tampil

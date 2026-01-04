@@ -91,7 +91,7 @@ def get_profile():
         "jenis_kelamin": user.jenis_kelamin
     }), 200
 
-# UPDATE PROFILE (PUT)
+# UPDATE PROFILE
 @auth_routes.route('/me', methods=['PATCH'])
 @jwt_required()
 def update_profile():
@@ -106,8 +106,6 @@ def update_profile():
     # Update field yang dikirim saja
     if 'nama_lengkap' in data:
         user.nama_lengkap = data['nama_lengkap']
-    if 'jenis_kelamin' in data:
-        user.jenis_kelamin = data['jenis_kelamin']
     
     # Khusus update password (harus di-hash ulang)
     if 'password' in data and data['password']:
@@ -120,7 +118,6 @@ def update_profile():
             "user": {
                 "nama_lengkap": user.nama_lengkap,
                 "email": user.email,
-                "jenis_kelamin": user.jenis_kelamin
             }
         }), 200
     except Exception as e:

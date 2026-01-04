@@ -4,6 +4,7 @@ from app.models.riwayat import RiwayatPrediksi
 from app.extensions import db
 from datetime import datetime, timezone
 import json
+from flask_jwt_extended import jwt_required
 
 prediksi_routes = Blueprint("prediksi_routes", __name__)
 
@@ -58,6 +59,7 @@ def prediksi():
 
 # Menambahkan route baru untuk mengambil riwayat milik user tertentu
 @prediksi_routes.route("/riwayat/<int:user_id>", methods=["GET"])
+@jwt_required()
 def get_riwayat(user_id):
     try:
         # Ambil riwayat berdasarkan id_users, urutkan dari yang terbaru

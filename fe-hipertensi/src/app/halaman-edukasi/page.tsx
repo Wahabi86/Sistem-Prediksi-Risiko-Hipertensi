@@ -3,9 +3,28 @@ import VideoEdukasi from "@/components/ui/VideoEdukasi";
 import { dataPendukung } from "@/data/datas";
 import { MoveRight } from "lucide-react";
 import Link from "next/link";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function EdukasiPage() {
   const videoId = "bRkrRlN1q_c";
+  const router = useRouter();
+  const [isAuthorized, setIsAuthorized] = useState(false);
+
+  useEffect(() => {
+    // Logic untuk mengatasi user yang tidak mempunyai token
+    const token = localStorage.getItem("token");
+    // Jika token tidak ada arahkan ke login
+    if (!token) {
+      router.push("/auth/login");
+    } else {
+      // Jika ada izinkan konten tampil
+      setIsAuthorized(true);
+    }
+  }, [router]);
+
+  // Jangan tampilkan apapun sebelum status login terkonfirmasi
+  if (!isAuthorized) return null;
 
   // Untuk mencari titik pertama di kalimat
   const getFirstSentence = (text: string): string => {

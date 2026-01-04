@@ -28,16 +28,16 @@ class RiwayatPrediksi(db.Model):
         waktu_wita = self.created_at + timedelta(hours=8)
 
         return {
-            # IDENTITAS
+            # Identitas
             "id_riwayat": self.id_riwayat,
             "tanggal": waktu_wita.strftime("%d %B %Y, %H:%M"),
 
-            # HASIL
+            # Hasil
             "hasilPrediksi": self.hasil_status,
             "probabilitas": self.probabilitas,
             "faktorPendukung": self.faktor_risiko,
 
-            # DATA MENTAH (UNTUK PDF)
+            # Data mentah untuk mendukung informasi dalam fitur PDF
             "usia": self.usia,
             "tinggiBadan": str(int(self.tinggi_badan)) if self.tinggi_badan else "0",
             "beratBadan": str(int(self.berat_badan)) if self.berat_badan else "0",
@@ -49,7 +49,7 @@ class RiwayatPrediksi(db.Model):
             "riwayatTekananDarah": self.riwayat_tekanan_darah,
             "riwayatKeluarga": self.riwayat_keluarga,
 
-            # UNTUK TAMPILAN RIWAYAT
+            # Untuk tampilan riwayat
             "kondisi": [
                 f"Riwayat Tekanan Darah: {self.riwayat_tekanan_darah}",
                 f"Status Merokok: {self.status_merokok}",

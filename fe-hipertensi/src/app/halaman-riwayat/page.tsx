@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FileTextIcon } from "@/components/ui/Icons";
 import DownloadButton from "@/components/ui/ButtonDownload";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 interface Riwayat {
   id_riwayat: number;
@@ -33,18 +34,25 @@ interface UserData {
 }
 
 export default function RiwayatPage() {
+  const router = useRouter();
   const [datasRiwayat, setDatasRiwayat] = useState<Riwayat[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState<UserData | null>(null);
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
   useEffect(() => {
+    // Logic untuk mengatasi user yang tidak mempunyai token
+    const token = localStorage.getItem("token");
     const storedUser = localStorage.getItem("user");
 
-    if (!storedUser) {
-      setIsLoading(false);
+    // Jika token tidak ada arahkan ke login
+    if (!token || !storedUser) {
+      router.push("/auth/login");
       return;
     }
 
+    // Jika ada izinkan konten tampil
+    setIsAuthorized(true);
     const user: UserData = JSON.parse(storedUser);
     setUserData(user);
 
@@ -56,18 +64,29 @@ export default function RiwayatPage() {
     }
 
     axios
-      .get<Riwayat[]>(`${process.env.NEXT_PUBLIC_API_URL}/api/riwayat/${user.id_users}`)
+      .get<Riwayat[]>(`${process.env.NEXT_PUBLIC_API_URL}/api/riwayat/${user.id_users}`, {
+        headers: {
+          // Sesuaikan format 'Bearer' dengan yang diminta backend Anda
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setDatasRiwayat(response.data);
         setIsLoading(false);
       })
       .catch((err) => {
+        if (err.response?.status === 401) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("user");
+          router.push("/auth/login");
+        }
         console.error("Gagal mengambil riwayat:", err);
         setIsLoading(false);
       });
-  }, []);
+  }, [router]);
 
-  if (isLoading) {
+  // Jangan tampilkan apapun sebelum status login terkonfirmasi
+  if (!isAuthorized || isLoading) {
     return <div className="text-center py-20">Memuat Riwayat...</div>;
   }
 

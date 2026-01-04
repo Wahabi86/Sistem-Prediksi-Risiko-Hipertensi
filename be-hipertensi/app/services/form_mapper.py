@@ -20,7 +20,7 @@ def map_form_input(data):
         "Hipertensi (140-159 / 90-99 mmHg)": "Hypertension",
     }
     FAMILY_HISTORY_MAPPING = {
-        "Tidak ada": "No",
+        "Tidak ada hipertensi": "No",
         "Ada hipertensi": "Yes",
     }
     EXERCISE_LEVEL_MAPPING = {

@@ -5,6 +5,7 @@ import PopupHasil from "@/components/ui/PopupHasil";
 import Link from "next/link";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 interface PredictionResult {
   status: string;
@@ -14,6 +15,8 @@ interface PredictionResult {
 }
 
 export default function FormPage() {
+  const router = useRouter();
+  const [isAuthorized, setIsAuthorized] = useState(false);
   const [formData, setFormData] = useState({
     jenis_kelamin: "",
     usia: "",
@@ -27,27 +30,40 @@ export default function FormPage() {
     tinggiBadan: "",
     beratBadan: "",
   });
-
   const [bmi, setBmi] = useState("");
-
-  const [isGenderLocked, setIsGenderLocked] = useState(false);
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      try {
-        const user = JSON.parse(storedUser);
-        if (user?.jenis_kelamin) {
-          setFormData((prev) => ({ ...prev, jenis_kelamin: user.jenis_kelamin }));
-          setIsGenderLocked(true);
-        }
-      } catch (e) {
-        console.error("Gagal parse data user", e);
-      }
-    }
-  }, []);
-
   const [predictionResult, setPredictionResult] = useState<PredictionResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isGenderLocked, setIsGenderLocked] = useState(false);
+  // menampilkan popup hasil
+  const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    // Logic untuk mengatasi user yang tidak mempunyai token
+    const token = localStorage.getItem("token");
+    const storedUser = localStorage.getItem("user");
+
+    // Jika token tidak ada arahkan ke login
+    if (!token || !storedUser) {
+      router.push("/auth/login");
+      return;
+    }
+
+    try {
+      const user = JSON.parse(storedUser);
+      if (user?.jenis_kelamin) {
+        setFormData((prev) => ({ ...prev, jenis_kelamin: user.jenis_kelamin }));
+        setIsGenderLocked(true);
+      }
+      // Jika ada izinkan konten tampil
+      setIsAuthorized(true);
+    } catch (e) {
+      console.error("Gagal parse data user", e);
+      router.push("/auth/login");
+    }
+  }, [router]);
+
+  // Jangan tampilkan apapun sebelum status login terkonfirmasi
+  if (!isAuthorized) return null;
 
   const handleInputChange = (field: keyof typeof formData, value: string) => {
     // Mencegah nilai negatif untuk field numerik
@@ -72,9 +88,6 @@ export default function FormPage() {
     }
   };
 
-  // menampilkan popup hasil
-  const [showPopup, setShowPopup] = useState(false);
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -82,7 +95,7 @@ export default function FormPage() {
     const requiredFields: (keyof typeof formData)[] = ["usia", "tingkatStres", "waktuTidur", "riwayatTekananDarah", "riwayatKeluarga", "olahraga", "statusMerokok"];
 
     for (const field of requiredFields) {
-      if (formData[field] === "" || (formData[field] === "0" && field === "tingkatStres")) {
+      if (formData[field] === "") {
         // Jika tingkat stres 0 dianggap valid, hapus pengecekan "0" di atas
         Swal.fire({
           title: "Data Belum Lengkap",
@@ -120,6 +133,7 @@ export default function FormPage() {
       const storedUser = localStorage.getItem("user");
       const user = storedUser ? JSON.parse(storedUser) : null;
 
+      // Penyiapan payload JSON
       const payload = {
         ...formData,
         bmi: parseFloat(bmi),
@@ -364,7 +378,7 @@ export default function FormPage() {
                     <option value="" disabled>
                       Pilih Riwayat Keluarga
                     </option>
-                    {["Tidak ada", "Ada hipertensi"].map((option) => (
+                    {["Tidak ada hipertensi", "Ada hipertensi"].map((option) => (
                       <option key={option} value={option}>
                         {option}
                       </option>

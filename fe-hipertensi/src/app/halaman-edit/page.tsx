@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { UserPen, Eye, EyeOff } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 
 interface UpdatePayload {
@@ -12,6 +13,8 @@ interface UpdatePayload {
 export default function EditPage() {
   const { updateProfile, loading } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
   // State untuk data awal
   const [initialData, setInitialData] = useState({
@@ -28,6 +31,16 @@ export default function EditPage() {
 
   // Load data dari localStorage saat halaman dibuka
   useEffect(() => {
+    // Logic untuk mengatasi user yang tidak mempunyai token
+    const token = localStorage.getItem("token");
+    // Jika token tidak ada arahkan ke login
+    if (!token) {
+      router.push("/auth/login");
+    } else {
+      // Jika ada izinkan konten tampil
+      setIsAuthorized(true);
+    }
+
     const savedUser = localStorage.getItem("user");
     if (savedUser) {
       const user = JSON.parse(savedUser);
@@ -41,7 +54,10 @@ export default function EditPage() {
       // Simpan nama awal untuk deteksi perubahan
       setInitialData({ nama_lengkap: user.nama_lengkap || "" });
     }
-  }, []);
+  }, [router]);
+
+  // Jangan tampilkan apapun sebelum status login terkonfirmasi
+  if (!isAuthorized) return null;
 
   // Logika Deteksi Perubahan:
   const isUnchanged = formData.nama_lengkap === initialData.nama_lengkap && formData.password.trim() === "";
