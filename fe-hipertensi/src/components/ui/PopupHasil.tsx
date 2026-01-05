@@ -82,6 +82,7 @@ export default function PopupHasil({ onClose, result, inputData, bmiValue }: Pop
             </div>
             <div className="border-t border-white/20"></div>
             <div>
+              {/* Panduan Kesehatan */}
               <h3 className="font-semibold text-sm sm:text-base mb-1">Panduan Kesehatan :</h3>
               <div className="space-y-2">
                 {result.health_guidelines.map((text, index) => (

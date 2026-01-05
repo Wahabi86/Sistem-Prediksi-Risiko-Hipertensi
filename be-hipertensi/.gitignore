@@ -16,7 +16,6 @@ __pycache__/
 *.log
 
 # ML Models
-*.pkl
 *.joblib
 
 # VSCode
