@@ -430,7 +430,7 @@ export default function FormPage() {
                   <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-2">Hasil Perhitungan BMI</h3>
                   <div className="text-2xl sm:text-3xl font-bold text-cyan-600 mb-2">{bmi || "--"}</div>
                   <p className="text-xs sm:text-sm text-gray-600">
-                    {bmi ? (parseFloat(bmi) < 18.5 ? "Kurus" : parseFloat(bmi) < 25 ? "Normal" : parseFloat(bmi) < 30 ? "Kegemukan" : "Obesitas") : "Masukkan tinggi dan berat badan untuk melihat BMI"}
+                    {bmi ? (parseFloat(bmi) <= 18.49 ? "Kurus" : parseFloat(bmi) <= 24.9 ? "Normal" : parseFloat(bmi) <= 27 ? "Kegemukan" : "Obesitas") : "Masukkan tinggi dan berat badan untuk melihat BMI"}
                   </p>
                 </div>
               </div>
